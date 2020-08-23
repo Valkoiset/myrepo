@@ -1,0 +1,67 @@
+
+
+1. correct plagiarism everywhere (and add graphs with additional experiments with pipe_gap?)
+
+2. TURN THE TRACKING MODE ON and correct everything which supervisor pointed out:
+	- define correctly objective of thesis
+	- numer all sections
+	- add citations from the literature
+
+
+Objective: to prove that Evolution Strategy algorithm may be used for solving Reinforcement Learning problems and be as sufficient as older, proven to be effective algorithms, such as: Q-learning, SARSA, DQN, DDPG, A3C. The main disadvantage of abovementioned algorithms is that they are highly relying on MDP (Markov Decision Process) framework which is very computationally demanding due to recursion involved for solving its main equation - Bellman Equation (also known as a Value Function). Thus, all these algorithms can't be used efficiently if the one does not have the access to a bunch of GPUs which are usually required in order to train a good agent. With my experiment I'm going to prove that even having 8GB RAM laptop may be enough for RL task using Evolution Strategy algorithm since it does not use Bellman Equation and, hence, not based on recursion which may require tremendous amounts of computational power.
+
+Intoroduction					3
+1. 	 Introduction to Machine Learning	4
+1.1	 A Quick History of Machine Learning 5
+1.2	 What is Machine Learning		6
+1.3	 Types of ML					7
+1.4    Overview of Supervised Learning Algorithm 8
+1.5	 Types of Supervised learning		9
+1.6    Unsupervised Learning			9
+1.7    Types of Unsupervised learning		9
+1.8	 Reinforcement Learning			10
+1.9	 Deep learning				11   
+1.10   Neural Network vs Deep Learning	11
+1.11   Summary of how Deep Learning works	13
+1.12   Application of Deep Learning		13
+1.13   Comparison of Machine Learning and Deep Learning	14
+
+2. Theory behind Reinforcement Learning	16
+2.1 Examples of application of Reinforcement Learning	19
+2.2 Elements of RL					20
+2.3 Scope and Limitations of RL			22
+2.4 The Agent-Environment Interface		24
+2.5 Rewards and Goals				26
+2.6 Returns – cumulative reward the agent receives in the long run.	28
+3.  Implementation of agent playing “Flappy Bird” game	30
+3.1 Evolution strategy				30
+3.2 Evolution Strategy theory			32
+3.3 Training parameters				35
+Conclusion						35
+Appendix						36
+Sources						45
+
+
+Literature sources:
+18  Vapnik, V. N. The Nature of Statistical Learning Theory, Springer Verlag, 2000.
+19  Kaplan, F. and Oudeyer, P. (2004). Maximizing learning progress: an internal reward system for development. Embodied artificial intelligence, p.629
+21  Hartmann, A.K. (2009). Practical Guide to Computer Simulations. World Scientific.
+22  Joseph L. Doob (1990). Stochastic processes. Wiley. P.46-47
+23. L. C. G. Rogers; David Williams (2000). Diffusions, Markov Processes, and Martingales: Volume 1, Foundations
+24  Zhou, X. Y. (1990). "Maximum Principle, Dynamic Programming, and their Connection in Deterministic Control
+
+
+
+
+Added date:
+  (05.26.2015). "Feature Engineering: How to transform variables and create new ones?". Analytics Vidhya.
+
+
+
+
+
+
+
+
+
+

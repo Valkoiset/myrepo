@@ -1,0 +1,635 @@
+NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA.
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M5)
+      Licensed to SGH EAS WX6, Site 70110891.
+NOTE: This session is executing on the X64_10PRO  platform.
+
+
+
+NOTE: Updated analytical products:
+
+      SAS/STAT 14.3
+      SAS/ETS 14.3
+      SAS/OR 14.3
+      SAS/IML 14.3
+      SAS/QC 14.3
+
+NOTE: Additional host information:
+
+ X64_10PRO WIN 10.0.17134  Workstation
+
+NOTE: SAS initialization used:
+      real time           1.82 seconds
+      cpu time            1.48 seconds
+
+1    libname data 'C:\Users\or83459\Desktop\pd2_en/data';
+NOTE: Libref DATA was successfully assigned as follows:
+      Engine:        V9
+      Physical Name: C:\Users\or83459\Desktop\pd2_en\data
+
+2    data result;
+3    set sashelp.class;
+4    age=age + 10;
+5    run
+6    data work.result;
+     ----
+     22
+     202
+
+ERROR 22-322: Syntax error, expecting one of the following: ;, CANCEL, PGM.
+
+ERROR 202-322: The option or parameter is not recognized and will be ignored.
+
+NOTE: The SAS System stopped processing this step because of errors.
+WARNING: The data set WORK.RESULT may be incomplete.  When this step was stopped there were 0
+         observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           1:43.49
+      cpu time            0.56 seconds
+
+
+7    set sashelp.class;
+     ---
+     180
+
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+8    age=age + 10;
+     ---
+     180
+
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+9    run;
+
+10   data work.result;
+11   set sashelp.class;
+12   age=age + 10;
+13   run;
+
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: The data set WORK.RESULT has 19 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.20 seconds
+      cpu time            0.00 seconds
+
+
+14   data work.result;
+15   set sashelp.class;
+16   output;
+17   age=age + 10;
+18   output;
+19   run;
+
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: The data set WORK.RESULT has 38 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+
+
+20
+21   /*read a row*/
+22   /*write into a memory (PDV)*/
+23   /*change*/
+24   /*read from PDV and output*/
+
+25   data work.result;
+26   output;
+27   set sashelp.class;
+28   output;
+29   age=age + 10;
+30   output;
+31   run;
+
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: The data set WORK.RESULT has 58 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+
+
+32
+33   /*read a row*/
+34   /*write into a memory (PDV)*/
+35   /*change*/
+36   /*read from PDV and output*/
+
+37   data work.result;
+38   put _all;
+39   run;
+
+NOTE: Variable _all is uninitialized.
+ERROR: You cannot open WORK.RESULT.DATA for output access with member-level control because
+WORK.RESULT.DATA is in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.01 seconds
+
+
+40   data result;
+41   put _all;
+42   run;
+
+NOTE: Variable _all is uninitialized.
+ERROR: You cannot open WORK.RESULT.DATA for output access with member-level control because
+WORK.RESULT.DATA is in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+43   data result;
+44   put _all;
+45   run;
+
+NOTE: Variable _all is uninitialized.
+.
+NOTE: The data set WORK.RESULT has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+
+
+46   data w;
+47   length event $ 100 iterationnumber 8;
+48   iterationnumber=_n_;
+49   event='start'; output;
+50   age1=1; age=1;
+51   iterationnumber=_n_;
+52   event='after 1 change'; output;
+53   set sashelp.class;
+54   iterationnumber=_n_;
+55   event='after set'; output;
+56   age2=1; age=1;
+57   iterationnumber=_n_;
+58   event='after 2 change'; output;
+59   run;
+
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: The data set WORK.W has 78 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+
+
+60   /*courses PD2_en*/
+61
+62   libname bib 'path' compress=yes access=readonly;
+NOTE: Library BIB does not exist.
+63   libname bib ('path1' 'path2');
+ERROR: No libraries specified in the concatenated library BIB exist.
+ERROR: Error in the LIBNAME statement.
+64   libname bib (work);
+NOTE: Libref BIB was successfully assigned as follows:
+      Levels:           1
+      Engine(1):        V9
+      Physical Name(1): C:\Users\or83459\AppData\Local\Temp\SAS Temporary
+      Files\_TD10132_LAB-C-0004D-12_
+65   libname bib clear;
+NOTE: Libref BIB has been deassigned.
+66
+67   libname bib excel 'path\report.xlsx';
+ERROR: Connect: Klasa niezarejestrowana.
+ERROR: Error in the LIBNAME statement.
+68   libname bib odbc dsn=database;
+ERROR: CLI error trying to establish connection: [Microsoft][Mened¿er sterowników ODBC] Nie mo¿na
+       odnaleŸæ nazwy Ÿród³a danych, a nie ma podanego sterownika domyœlnego
+ERROR: Error in the LIBNAME statement.
+69   libname bib oracle, teradata itp.
+70
+71   /*sequence of code compilation*/
+72   /*0 - macro compilation*/
+73   /*1 - syntax analysis SAS 4GL*/
+74   /*2 - headline of dataset and PDV*/
+75   /*3 - final compilation and runing*/
+76
+77   /*step 1 can stop the program*/
+78   /*d w;*/
+79   /*s sashelp.class;*/
+80   /*run;*/
+81   /*log:*/
+82   /*ERROR 180-322: Statement is not valid or it is used out of proper order.*/
+83
+84   /*step 3 does not stop, only output PDV into log.*/
+85   data w;
+ERROR: The SAS/ACCESS Interface to ORACLE cannot be loaded. ERROR: Image SASORA   found but not
+       loadable..
+Please make sure Oracle environment is set correctly.
+Look in the install/Config doc for additional info for your platform.
+Other possible reasons - incomplete Oracle client install, 32/64-bit mismatch between Oracle client &
+       SAS, incorrect Oracle client version(Oracle client must match the version picked during
+       post-install process), incompatible sasora for your OS or its attribs don't permit SAS to load
+       it.
+ERROR: Error in the LIBNAME statement.
+86   a=0;
+     -
+     180
+
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+87   b=1/a;
+     -
+     180
+
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+88   run;
+89   /*log:*/
+90   /*NOTE: Division by zero detected at line 6 column 4.*/
+91   /*a=0 b=. _ERROR_=1 _N_=1*/
+92   /*NOTE: Mathematical operations could not be performed at the following places. The results of
+92 ! the*/
+93   /*      operations have been set to missing values.*/
+94   /*      Each place is given by: (Number of times) at (Line):(Column).*/
+95   /*      1 at 6:4*/
+96   /*NOTE: The data set WORK.W has 1 observations and 2 variables.*/
+97   /*NOTE: DATA statement used (Total process time):*/
+98   /*      real time           0.48 seconds*/
+99   /*      cpu time            0.01 seconds*/
+100
+101
+102  data w;
+103  length event $ 100 iterationnumber 8;
+104  iterationnumber=_n_;
+105  event='start'; output;
+106  age1=1; age=1;
+107  iterationnumber=_n_;
+108  event='after 1 change'; output;
+109  set sashelp.class;
+110  iterationnumber=_n_;
+111  event='after set'; output;
+112  age2=1; age=1;
+113  iterationnumber=_n_;
+114  event='after 2 change'; output;
+115  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+
+
+116  /* the loop is ending inside after 1 change*/
+117
+118  data w;
+119  length event $ 100 iterationnumber 8;
+120  iterationnumber=_n_;
+121  event='start before loop'; output;
+122  do i=1 to 3;
+123      age1=1; age=1;
+124      iterationnumber=_n_;
+125      event='after 1 change'; output;
+126      set sashelp.class;
+127      iterationnumber=_n_;
+128      event='after set'; output;
+129      age2=1; age=1;
+130      iterationnumber=_n_;
+131      event='after 2 change'; output;
+132  end;
+133  iterationnumber=_n_;
+134  event='after loop'; output;
+135  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+
+
+136
+137  data w;
+138  length event $ 100 iterationnumber nnn 8;
+139  nnn=n_obs;
+140  iterationnumber=_n_;
+141  event='before loop'; output;
+142  do i=1 to n_obs;
+143      wiek1=1; age=1;
+144      iterationnumber=_n_;
+145      event='after 1 change'; output;
+146      set sashelp.class nobs=n_obs;
+147      iterationnumber=_n_;
+148      event='after set'; output;
+149      wiek2=1; age=1;
+150      iterationnumber=_n_;
+151      event='after 2 change'; output;
+152  end;
+153  iterationnumber=_n_;
+154  event='after loop'; output;
+155  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+156
+157  /*typical codes*/
+158  data w;
+159  do i=1 to n_obs;
+160      set sashelp.class nobs=n_obs;
+161      age2=1; age=1;
+162      output;
+163  end;
+164  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+165
+166  data w;
+167  set sashelp.class;
+168  age2=1; age=1;
+169  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+170
+171  /*variable attributes*/
+172  /*what attributes are assigned in the following lines?*/
+173  data w;
+174  a=1;
+175  a='1';
+176  run;
+
+NOTE: Character values have been converted to numeric values at the places given by: (Line):(Column).
+      175:3
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+
+
+177
+178
+179  data w;
+180  a='123';
+181  a='Helen has a cat';
+182  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+183
+184  /*hidden conversion*/
+185  data w;
+186  a=1;
+187  b=substr(a,1,1);
+188  run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      187:10
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+
+
+189
+190  /*unhidden conversion*/
+191  data w;
+192  a=1;
+193  b=substr(a,12,1);
+194  run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      193:10
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+
+
+195  data w;
+196  a=1;
+197  b=substr(put(a,best12.-L),1,1);
+198  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+
+
+199
+200  data w;
+201  do i=1 to 8;
+202  n=CONSTANT('EXACTINT',i);
+203  output;
+204  end;
+205  format n 30.;
+206  run;
+
+ERROR: You cannot open WORK.W.DATA for output access with member-level control because WORK.W.DATA is
+in use by you in resource environment ViewTable Window.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.01 seconds
+
+
+207
+208
+209  /*formats with a dot - digital separator*/
+210  /*best12.*/
+211  /*12.2*/
+212  /*comma12.2*/
+213  /*percent12.2*/
+214  /*formats with a comma - digital separator*/
+215  /*numx12.2*/
+216  /*nlnum12.2*/
+217  /*commax12.2*/
+218  /*nlpct12.2*/
+219  /*useful format*/
+220  /*z12.*/
+221  /*date formats*/
+222  /*datetime.*/
+223  /*time.*/
+224  /*date.*/
+225  /*yymmdd10.*/
+226  /*ddmmyy10.*/
+227  /*POLDFDWN.*/
+228
+229  /*functions should be known*/
+230  dim
+230  dim
+     ---
+     180
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+231  byte
+232  cat, catx, catt
+233  compress
+234  compare
+235  index, indexw
+236  length
+237  missing
+238  upcase, propcase, lowcase
+239  rank
+240  repeat
+241  reverse
+242  scan
+243  substr
+244  translate, tranwrd
+245  datepart
+246  day, weekday, year, month, mdy itp.
+247  intck, intnx
+248  sum, nmiss, n, std, itp.
+249  ordinal
+250  constant
+251  ranuni, rannor
+252  inputc, inputn, putc, putn
+253  int, round, floor
+254  vname, vlength
+
+255  data result;
+256  set sashelp.class;
+257  age=age+10;
+258  run;
+
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: The data set WORK.RESULT has 19 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+
+
+259  data w;
+260  a=1;
+261  a='1';
+262  run;
+
+NOTE: Character values have been converted to numeric values at the places given by: (Line):(Column).
+      261:3
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+263  data w;
+264  a='123';
+265  a='Helen has a cat';
+266  run;
+
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+
+
+267  data w;
+268  profit = 100;
+269  income = proffit;
+270  run;
+
+NOTE: Variable proffit is uninitialized.
+NOTE: The data set WORK.W has 1 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+271  data w;
+272  do i=1 to 8;
+273  n=CONSTANT('EXACTINT',i);
+274  output;
+275  end;
+276  format n 30.;
+277  run;
+
+ERROR: The second argument to the CONSTANT function with first argument of EXACTINT must be between 2
+       and 8.
+NOTE: Argument 2 to function CONSTANT('EXACTINT',1) at line 273 column 3 is invalid.
+i=9 n=9007199254740992 _ERROR_=1 _N_=1
+NOTE: Mathematical operations could not be performed at the following places. The results of the
+      operations have been set to missing values.
+      Each place is given by: (Number of times) at (Line):(Column).
+      1 at 273:3
+NOTE: The data set WORK.W has 8 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.04 seconds
+
+
+278  data w;
+279  a=12345.6789;
+280  format a 12.2;
+281  run;
+
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+282  data w;
+283  a=12345.6789;
+284  format a 12.2;
+285  put a comma12.2;
+286  run;
+
+   12,345.68
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+
+287  data w;
+288  a=-0.05;
+289  b=-0.05;
+290  put a percent12.2 b nlpct12.2;
+291  run;
+
+(     5.00%)      -5,00%
+NOTE: The data set WORK.W has 1 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.03 seconds
+
+
+292  data w;
+293  a=-0.05;
+294  put a z12.;
+295  run;
+
+-00000000000
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+

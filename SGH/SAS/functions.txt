@@ -1,0 +1,210 @@
+/*functions should be known*/
+dim - used in arrays
+byte
+cat, catx, catt
+compress - useful for deleting some letters
+compare
+index, indexw
+length
+missing - identify missing value
+upcase, propcase, lowcase
+rank - inverse from byte
+repeat
+reverse - reverse the string
+scan 
+substr
+translate, tranwrd
+datepart - take value from the date time number
+day, weekday, year, month, mdy itp. - calculate number of date in month, etc.
+intck, intnx - to move forwards or backwards from some date
+sum, nmiss, n, std, itp. - descriptive statistics
+ordinal
+constant
+ranuni, rannor - generate some random numbers with 2 types of distribution
+inputc, inputn, putc, putn - to translate text into number and vise versa
+int, round, floor 
+vname, vlength
+
+
+data w;
+b=a+1;
+retain a 0;
+run;
+
+// b = 1 because it first assigns a to 0 and then do a b=a+1
+
+
+data w;
+retain a1-a20 (5*0,5*1,5*2,5*3);	// create 20 variables and assign them values
+put _all_;
+run;
+
+data w;
+d='01jan1960'd;
+d2=mdy(1,1,1960);
+format d d2 yymmdd10.;	// results will be the same
+format d: yymmdd10.;
+run;
+
+homework:
+
+try run following code by myself:
+
+/*compress*/
+/*translate*/
+/*cat*/
+/*trim*/
+/*left*/
+
+data w;
+a='SAS has a power';
+b0=compress(a);
+b=compress(a,'a ');
+run;
+
+data w;
+a='SAS has a power';
+b=translate(a,'sa','SA');
+run;
+
+data w;
+length a b $10 c $100;
+a='SAS';
+b=a||'has a power';
+c='***'||a||'has a power'||'***';
+run;
+
+data w;
+length a b $10 c $100;
+a='SAS';
+b=trim(a)||'has a power';
+c='***'||trim(a)||'has a power'||'***';
+run;
+
+data w;
+length a b $10 c $100;
+a='  SA S  ';
+b=trim(left(a))||'has a power';
+c='***'||trim(left(a))||'has a power'||'***';
+run;
+/**/
+/*CAT(OF X1-X4)*/
+/* X1||X2||X3||X4*/
+/* */
+/*CATS(OF X1-X4)*/
+/* TRIM(LEFT(X1))||TRIM(LEFT(X2))||TRIM(LEFT(X3))||*/
+/*TRIM(LEFT(X4))*/
+/* */
+/*CATT(OF X1-X4)*/
+/* TRIM(X1)||TRIM(X2)||TRIM(X3)||TRIM(X4)*/
+/* */
+/*CATX(SP, OF X1-X4)*/
+/* TRIM(LEFT(X1))||SP||TRIM(LEFT(X2))||SP||*/
+/*TRIM(LEFT(X3))||SP||TRIM(LEFT(X4))*/
+ 
+data w;
+if (a=1 or b>0) and c<0 then do
+	a=2;
+	b=3;
+	output;
+end; else do;
+	c=8;
+	b=y;
+	output;
+end; 
+run;
+
+data w;
+if (a=1 or b>0) and c<0 then a=2;
+else c=8;
+run;
+
+data w;
+if (a=1 or b>0) and c<0 then a=2;
+run;
+
+data w;
+do i=1 to 10;
+	output;
+end;
+	output;
+run;
+
+data w;
+do i=1 to 10 by 3;
+	output;
+end;
+	output;
+run;
+
+data w;
+do imie='Karol','Mark','John';
+	output;
+end;
+output;
+run;
+
+/*
+These iterative DO statements use a list of items for the value of start: 
+
+do month='JAN','FEB','MAR';
+do count=2,3,5,7,11,13,17;
+do i=5;
+do i=var1, var2, var3;
+do i='01JAN2001'd,'25FEB2001'd,'18APR2001'd;
+These iterative DO statements use the start TO stop syntax: 
+
+do i=1 to 10;
+do i=1 to exit;
+do i=1 to x-5;
+do i=1 to k-1, k+1 to n;
+do i=k+1 to n-1;
+These iterative DO statements use the BY increment syntax: 
+
+do i=n to 1 by -1;
+do i=.1 to .9 by .1, 1 to 10 by 1,
+   20 to 100 by 10;
+do count=2 to 8 by 2;
+These iterative DO statements use WHILE and UNTIL clauses: 
+
+do i=1 to 10 while(x<y);
+do i=2 to 20 by 2 until((x/3)>y);
+do i=10 to 0 by -1 while(month='JAN');
+In this example, the DO loop is executed when I=1 and I=2; the WHILE condition is evaluated when I=3, and the DO loop is executed if the WHILE condition is true. 
+
+DO I=1,2,3 WHILE (condition);
+*/
+
+
+data w;
+amount=1000;
+percent=0.04;
+do year=1 to 5;
+	do m=1 to 12;
+		amount=amount*(1+percent/12);
+		output;
+	end;
+end;
+format amount nlnum12.2;
+/*drop year m;*/
+run;
+
+data w;
+set sashelp.class;
+age1=lag(age);
+age2=lag2(age);
+age3=lag3(age);
+run;
+
+data w;
+set sashelp.class;
+if sex='F' then aaa=lag(age);
+age1=lag(age);
+age2=lag2(age);
+age3=lag3(age);
+run;
+
+/*Each occurrence of a LAGn function */
+/*in a program generates its own queue */
+/*of values.*/
+

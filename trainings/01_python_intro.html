@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to Python</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Mercer 2018" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/idash.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to Python
+### Mercer 2018
+
+---
+
+
+class: inverse, center, middle
+
+# Python language
+---
+
+## What is Python?
+"Python is an interpreted high-level programming language for general-purpose programming. Created by Guido van Rossum and first released in 1991, Python has a design philosophy that emphasizes code readability, notably using significant white space." - Wikipedia
+
+---
+## Python 2 vs Python 3
+- There are currently two versions of Python that are being used: 2 and 3.
+- Python 2.0 was first released in 2000, 3.0 was released in 2008.
+- Intention behind the release of Python 3.0 was to fix problems that were present in version 2. However, the introduction of those fixes made Python 3 incompatible with Python 3. This is the reason for two versions of Python being in use.
+
+---
+## Python 2 vs Python 3
+- New versions of Python 3 are still being developed (latest version 3.7 was released in 2018-06). In contrast, the last major version of Python 2 (2.7) was released in mid-2010. There are no new versions of Python 2 planned. It will only receive security and bug fixes updates till 2020, and it will not be maintained past this year.
+
+---
+
+##Python 2 vs Python 3
+- Python 3 is mature and ready for use, and there are only very few libraries left that do not support Python 3. Therefore it is gradually gaining popularity. In 2017, Python 3 was used in 36,3% of the new commercial products vs 28.1% in 2016 [*](https://semaphoreci.com/blog/2017/10/18/python-versions-used-in-commercial-projects-in-2017.html).
+- Except some rare occasions (like working with legacy code) you should be using (and learning) Python 3.
+
+---
+
+##Python 3 changes
+Python 3 introduced several changes to Python, that made it not compatible with Python 2. These are some of them:
+- improvement of integer division,
+- strings were changed into Unicode instead of ASCII,
+- introduction of more string formatting options like `f""` notation,
+- syntax for raising and handling exceptions was changed, ...
+
+You can find more detailed discussion of the differences between Python 2 and 3 [here](https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html) and [here](https://www.asmeurer.com/python3-presentation/slides.html#1).
+
+---
+
+##Python distributions
+- &lt;b&gt;CPython&lt;/b&gt; is a standard implementation, and is used as a reference by other incarnations. It is written in C, and is the most conservative in terms of performance optimizations, but most compatible and standardized. It's harder for example to create virtual environments with it.
+
+---
+
+##Python distributions
+- &lt;b&gt;Anaconda Python&lt;/b&gt; is mostly used for math, statistics, engineering, data analysis, machine learning, and related applications. It bundles packages most commonly used in those areas as SciPy and Numpy and has custom package management system (conda).
+
+---
+
+##Python distributions
+- &lt;b&gt;Active Python&lt;/b&gt; aimed at enterprise users and data scientist, it supplies a few hundred common libraries as verified pack-ins, along with some common libraries with third-party dependencies.
+
+---
+
+##Python distributions
+- &lt;b&gt;PyPy&lt;/b&gt; uses just-in-time (JIT) compilation to speed up the execution of Python programs. It's on average 7.7x faster than CPython, but it has limited support for C extensions, which makes it problematic to work with packages that interface C libraries, like NumPy. It also has a limited support for Python 3.
+
+---
+
+##Python distributions
+- &lt;b&gt;Jython&lt;/b&gt; compiles Python 2 to JVM (Java Virtual Machine), that makes it possible to use Java libraries  use Java libraries.
+- &lt;b&gt;IronPython&lt;/b&gt; is an implementation of Python on the .Net run time, and allows interoperability between Python and the .Net universe. As Jython, it only supports Python 2.
+
+---
+
+##Python distributions
+- &lt;b&gt;WinPython&lt;/b&gt; is a distribution created for Windows users. It is bundled with several data science oriented packages like Pandas, NumPy, Matplotlib etc., that can be used without the need to install them.
+
+---
+class: inverse, center, middle
+#Jupyter Notebook
+
+---
+
+##Jupyter notebook
+- The Jupyter notebook is an open-source web-application that allows you to create notebooks, which are are interactive documents with a code, text, and plots. 
+- It supports over 40 programming languages. You just need the right kernel, which is an implementation of interactive computing protocol for a given language.
+
+---
+
+##Jupyter notebook
+- Python's Jupyter uses IPython as it's kernel.
+- To start Jupyter Notebook, you need to run `jupter notebook` command in your terminal. It should automatically open in your browser. If that is not the case, you can go to http://localhost:8888/ using your favorite browser, to access it.
+
+---
+##Jupyter notebook - useful features
+Jupyter introduces several features that make programming easier. These are some of them:
+
+--
+- &lt;b&gt;tab completion&lt;/b&gt; when you are writing an expression and press Tab it will search the namespace for any variables that match characters typed so far.
+
+--
+- `?` before or after variable will display general information about the object.
+
+--
+- `??` shows more detailed information with the function's source code if it is available.
+
+--
+- you can also access documentation using `Shift+Tab`. If you press this combination twice, it will give you more information.
+---
+##Jupyter notebook - useful shortcuts
+- `Enter` enters edit mode,
+- `Esc` exists edit mode, enters into command mode,
+- `Ctr+Enter` executes the code in the active cell,
+- `Shift+Enter` executes code in the active cell, but additionally switches to the next cell,
+- `A` creates a new cell above the currently active one, whereas `B` creates new cell below the currently active cell,
+- `M` switches cell type to markdown, `Y` back to code.
+
+---
+##Jupyter notebook - useful shortcuts
+- `I` interrupts the kernel (stops code execution),
+- `C` copies the cell,
+- `X` cuts the cell,
+- `V` pastes the cell,
+- `DD` deletes the cell,
+- `H` shows more shortcuts ;).
+
+---
+##Jupyter notebook - magic commands
+Magic commands are special commands that are not built into Python itself, but are available in IPython, and can be also used in Jupyter. They are prefixed with `%`. The most useful are:
+
+--
+- `%run` command allows you to run the whole script. With `%run -i` you give a script access to variables defined in the IPython session.
+
+--
+- `%load` imports the script into a code cell.
+
+--
+- `%timeit` measures how much time it takes to execute the function.
+
+--
+- `%pwd` prints current working directory.
+
+---
+##Jupyter notebook - magic commands
+- `%who`/`%who_ls`/`%whos` are used to display variables defined in your namespace with different level of details.
+
+--
+- `%reset` deletes all variables in your namespace.
+
+--
+- `%matplotlib inline` allows you to display matplotlib plots in your notebook.
+
+--
+- using `%magic` or `%quickref` you can access more information on magic methods.
+
+---
+class: inverse, center, middle
+#Spyder IDE
+---
+##Spyder overview
+- Spyder is Integrated Development Environment for Python that was created with scientists, engineers and data analysts in mind.
+- It allows you to run a Python code interactively.
+- It is part of Anaconda distribution.
+- In addition to the script editor and IPython session it has several useful components as variables explorer, file explorer, history log, and documentation viewer.
+
+---
+class: inverse, center, middle
+#Spyder walkthrough
+
+---
+class: inverse, center, middle
+#Python syntax
+
+---
+##Indentation
+Python uses white space indentation, rather than curly brackets or keywords, to delimit blocks.
+
+.small-code[
+
+```python
+def print_greeting(day):
+    if day == 1:
+        print('Welcome to the first day of this Python workshop!')
+    else:
+        print('Welcome to the second day of this Python workshop!')
+print_greeting(1)
+# Welcome to the first day of this Python workshop!
+```
+]
+---
+##Comments
+Any text that is preceded with `#` is ignored by Python interpreter, so hash sign is used for commenting.
+
+
+```python
+# This line will be ignored by Python interpreter
+1 + 1
+```
+---
+##Attributes and methods
+Python objects usually have:
+- &lt;b&gt;attributes&lt;/b&gt; are other objects stored inside the object.
+
+
+```python
+import string
+string.digits
+```
+
+--
+- &lt;b&gt;methods&lt;/b&gt; are functions associated with the object.
+
+
+```python
+var = 'string'
+var.count('s')
+```
+---
+##Attributes and methods
+Attributes and methods can be also accessed using `getattr()` function.
+
+.small-code[
+
+```python
+getattr(string, 'digits')
+# '0123456789'
+```
+
+
+```python
+var = 'string'
+getattr(var, 'count')
+# &lt;function str.count&gt;
+```
+
+
+```python
+getattr(var, 'count')('s')
+# 1
+```
+]
+
+---
+##Mutable and immutable objects
+Most of the objects in Python are &lt;i&gt;mutable&lt;/i&gt;, which means that objects they contain can be modified. This is true for example for dictionaries, lists, and numpy arrays.
+
+
+```python
+ls = [1, 2, 3]
+ls[1] = 5
+ls
+# [1, 5, 3]
+```
+
+---
+##Mutable and immutable objects
+However some object types like strings and tuples are immutable.
+
+.small-code[
+
+```python
+string = 'string'
+string[3] = 'v'
+# TypeError: 'str' object does not support item assignment
+```
+
+
+```python
+my_tuple = (2, 3)
+my_tuple[0] = 10
+# TypeError: 'tuple' object does not support item assignment
+```
+]
+
+---
+class: inverse, center, middle
+# Variables
+
+---
+
+## Variables declaration
+
+Variables are reserved memory locations to store values. This means that when you create a variable you reserve some space in memory for this variable. In Python, equal sign (=) is used to declare variable.
+
+--
+
+
+```python
+x = 1
+y = 'abc'
+x
+# 1
+y
+# 'abc'
+```
+---
+## Static vs. dynamic typing
+
+Python is dynamic typed language which implies that you do not have to specify in advance what will be the type of the variable. Moreover, variables can change types.
+
+--
+
+
+```python
+x = 1
+x
+# 1
+```
+
+--
+
+```python
+x = 'a'
+x
+# 'a'
+```
+
+---
+## Weakly vs. strongly typed languages
+
+Most programming languages, including Python, allow implicit coercions between related types. For example, the addition of an integer and a float is possible.
+
+--
+
+```python
+x, y = 1, 2.5
+print(f'x is of {type(x)} type, and y is {type(y)}')
+# x is of int type, and y is float
+```
+
+--
+
+```python
+x + y
+# 3.5
+```
+
+---
+## Weakly vs. strongly typed languages
+In a __weakly typed__ programming languages, objects can be __automatically converted between unrelated types__ (eg. integers to strings). It is not possible in case of __strongly typed__ programming languages, for which you need to convert objects from one type to another by yourself. 
+
+--
+
+```python
+x, y = 'a', 1
+x + y # This will return TypeError
+```
+
+--
+
+```python
+x + str(y)
+# 'a1'
+```
+
+--
+Python is __strongly typed__ language.
+
+---
+## Multiple assignment
+Multiple assignment allows to assign multiple values to multiple variables.
+--
+
+```python
+x, y = 1, 'abc'
+x
+y
+# 1
+# 'abc'
+```
+
+--
+Multiple assignment is also called __tuple unpacking__ or __iterable unpacking__. 
+
+---
+## Iterable unpacking
+
+You can use multiple unpacking with any iterable objects. For example:
+
+--
+- lists: 
+
+
+```python
+x, y, z = [1, 2, 3]
+```
+
+--
+- strings:
+
+
+```python
+x, y, z = 'abc'
+x
+# 'a'
+```
+
+---
+## Iterable unpacking
+- other iterables:
+
+```python
+x, y, z = range(3)
+z
+# 2
+```
+
+---
+## What happens when we assign variables?
+
+--
+A Python variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to the object by that name. But the data itself is still contained within the object.
+
+--
+.small-code[
+
+```python
+x = 1
+```
+]
+
+--
+
+This assignment creates an integer __object with the value 1__ and assigns the __variable x__ to point to that object.
+
+&lt;div style='text-align: center'&gt;
+&lt;img src="www/img/assignment_1.jpg" height = '91.5', width = '346.5'&gt;
+&lt;/div&gt;
+
+--
+
+.small-code[
+
+```python
+x, type(x)
+# (1, &lt;class 'int'&gt;)
+```
+]
+
+---
+## What happens when we assign variables?
+
+
+```python
+y = x
+```
+
+--
+Python __does not__ create another object. It simply creates a __new symbolic name or reference__, y, which points to the same object that x points to.
+
+&lt;div style='text-align: center'&gt;
+&lt;img src="www/img/assignment_2.jpg" width = '484' height = '98'&gt;
+&lt;/div&gt;
+---
+## What happens when we assign variables?
+
+```python
+y = 3
+```
+--
+Now Python creates a new integer object with the value 3, and y becomes a reference to it.
+
+&lt;div style='text-align: center'&gt;
+&lt;img src="www/img/assignment_3.jpg" width = '484.5' height = '211'&gt;
+&lt;/div&gt;
+
+---
+## What happens when we assign variables?
+
+```python
+x = 'abc'
+```
+
+--
+There is no longer any reference to the integer object 1. It is orphaned, and there is no way to access it.
+
+&lt;div style='text-align: center'&gt;
+&lt;img src="www/img/assignment_4.jpg" width = '420' height = '269'&gt;
+&lt;/div&gt;
+---
+## What happens when we assign variables?
+An object's life begins when it is created with at least one reference to it. During an object's lifetime, additional references to it may be created, and references to it may be deleted as well. An object __stays alive__, as long as there is __at least one reference__ to it.
+
+---
+class:inverse
+### Excercise 1 (3 min)
+
+Using Python built-in function `id()`, that returns unique object identifier, check the ids of following variables.
+--
+
+
+```python
+x = 'a string value'
+y = x
+z = 'a string value'
+```
+--
+
+```python
+y = 'different string value'
+```
+
+???
+id(x), id(y), id(z)
+
+---
+## Copying objects
+
+Assignment statements in Python __do not copy__ objects, they __create bindings__ between a target and an object.
+
+
+--
+
+```python
+x = [1, 2, 3]
+y = x
+print(f'x = {x} \n y = {y}')
+# x = [1, 2, 3] 
+# y = [1, 2, 3]
+```
+
+--
+
+```python
+x.append(4)
+print(f'x = {x} \n y = {y}')
+# x = [1, 2, 3, 4] 
+# y = [1, 2, 3, 4]
+```
+
+---
+## Copying objects
+For collections that are mutable or contain mutable items, you can use `copy()` to create a new object, so that you can modify one without changing another.
+
+--
+
+```python
+x = [1, 2, 3]
+y = x.copy() #or y = x[:]
+print(f'x = {x} \n y = {y}')
+# x = [1, 2, 3] 
+# y = [1, 2, 3]
+```
+
+--
+
+
+```python
+x.append(4)
+print(f'x = {x} \n y = {y}')
+# x = [1, 2, 3, 4] 
+# y = [1, 2, 3]
+```
+
+---
+class:inverse
+###Excercise 2 (3 min)
+
+Check the id of my_list, ref_list, copied_list and sliced list
+--
+
+```python
+my_list = ['a', 'b', 'c']
+ref_list = my_list
+copied_list = my_list.copy()
+sliced_list = my_list[:]
+```
+
+???
+id(my_list), id(ref_list), id(copied_list), id(sliced_list)
+
+---
+class: inverse, center, middle
+## Scalar types
+
+---
+##Scalar types
+Python has several built-in data types that are useful to work with numerical data, strings, and boolean values. This types are called scalar types because they consist of single value.
+
+--
+- &lt;b&gt;None&lt;/b&gt; is Python's equivalent of null value.
+
+
+```python
+a = None
+type(a)
+# NoneType
+```
+---
+##Scalar types
+- &lt;b&gt;Numeric types&lt;/b&gt; consist of two types for storing numbers: &lt;b&gt;int&lt;/b&gt; for whole number and &lt;b&gt;float&lt;/b&gt; for decimals.
+
+
+```python
+b = 3
+type(b)
+# int
+```
+
+
+```python
+c = 3.0
+type(c)
+# float
+```
+---
+##Scalar types
+- &lt;b&gt;Boolean (bool)&lt;/b&gt; are True and False values. They are sub type of integers.
+
+.small-code[
+
+```python
+d = True
+type(d)
+# bool
+```
+
+
+```python
+d == 1
+# True
+```
+
+
+```python
+False == 0
+# True
+```
+
+
+```python
+sum([True, False, True])
+# 2
+```
+]
+---
+##Scalar types
+- &lt;b&gt;Strings (str)&lt;/b&gt; hold Unicode strings. They behave similarly to sequence types so they can also be considered as sequences of character.
+
+
+```python
+e = 'string'
+type(e)
+# str
+```
+
+---
+##Scalar types
+The key takeaways:
+- `None` is a null value,
+- `int` is a whole number, `float` a decimal value,
+- `bool` is a logical True or False,
+- `str` is a sequence of characters.
+
+---
+class: inverse, center, middle
+#Basic operations
+
+---
+##Math operations
+In Python, most math operations work as expected. They can be performed on numeric data types.
+
+.small-code[
+
+```python
+10 - 2
+# 8
+```
+
+
+```python
+3 + 5
+# 8
+```
+
+
+```python
+6 * 8
+# 48
+```
+
+
+```python
+7 / 10
+# 0.7
+```
+]
+
+---
+##Math operations
+
+.small-code[
+
+```python
+14 // 5 # keeps only integer part of the result
+# 2
+```
+
+
+
+```python
+14 % 5 # remainder from the division
+# 4
+```
+
+
+```python
+3 ** 2 # power
+# 9
+```
+]
+---
+##Comparisons
+You can also compare objects' values easily using comparison signs. The result of the comparison is bool value.
+
+.small-code[
+
+```python
+4 &gt; 3 
+# True
+```
+]
+--
+.small-code[
+
+```python
+3 &lt;= 5
+# True
+```
+]
+
+--
+.small-code[
+
+```python
+3 == 2
+# False
+```
+]
+
+--
+.small-code[
+
+```python
+3 != 2
+# True
+```
+]
+
+---
+##Comparisons
+
+.small-code[
+
+```python
+a = 3; b = 3
+a is b # check if a and b reference the same object
+```
+]
+
+--
+.small-code[
+
+```python
+a is not b # not is used to negate the statement
+```
+]
+
+--
+.small-code[
+
+```python
+True and True
+```
+]
+
+--
+.small-code[
+
+```python
+True &amp; True # logical and
+```
+]
+
+--
+.small-code[
+
+```python
+True or False
+```
+]
+
+--
+.small-code[
+
+```python
+True | False # logical or
+```
+]
+
+---
+class: inverse, center, middle
+#Operations on strings
+
+---
+##Operations on strings
+Strings have several methods that can be used to manipulate them. The whole list can be found [here](https://docs.python.org/3/library/stdtypes.html#string-methods). We will go through the most useful.
+
+---
+##str.count
+`str.count(sub[, start[, end]])` returns the number of occurrences of a given sub string &lt;i&gt;sub&lt;/i&gt; in the string.
+
+.small-code[
+
+```python
+"special cases aren't special enough to break the rules.".count('spec')
+# 2
+```
+
+
+```python
+"special cases aren't special enough to break the rules.".count('spec', 5)
+# 1
+```
+]
+
+---
+##str.find
+`str.find(sub[, start[, end]])` returns the index of the first occurrence of the sub string &lt;i&gt;sub&lt;/i&gt;.
+
+.small-code[
+
+```python
+"special cases aren't special enough to break the rules.".find('spec')
+# 0
+```
+
+
+```python
+"special cases aren't special enough to break the rules.".find('spec', 5)
+# 21
+```
+]
+
+---
+##str.format
+`str.format(*args, **kwargs)` allows you to put variables into the string.
+
+.small-code[
+
+```python
+"Sales for {2} in {0} reached the level of ${1} M".format(
+        2017, 30, 'XYZ Ltd')
+# 'Sales for XYZ Ltd in 2017 reached the level of $30 M'
+```
+
+
+```python
+"Sales for {company_name} in {year} reached the level of ${sales} M".format(
+    year = 2017, sales = 30, company_name = 'XYZ Ltd')
+# 'Sales for XYZ Ltd in 2017 reached the level of $30 M'
+```
+]
+
+---
+##String formatting using `f`
+Instead of using `str.format` function you can also use simplified syntax with `f`.
+
+.small-code[
+
+```python
+year = 2018
+sales = 30
+company_name = 'XYZ Ltd'
+f"Sales for {company_name} in {year} reached the level of ${sales} M"
+# 'Sales for XYZ Ltd in 2018 reached the level of $30 M'
+```
+
+
+```python
+year = 2018
+sales = 30.721
+prev_year_sales = 29
+company_name = 'XYZ Ltd'
+f"""Sales for {company_name} in {year} reached the level of ${sales:.1f} M, 
+which means that they increased {sales / prev_year_sales - 1:.1%}"""
+# 'Sales for XYZ Ltd in 2018 reached the level of $30.7 M, 
+# which means that they increased 5.9%'
+```
+]
+
+---
+##Changing case of letters 
+Strings also have a few methods that you can use to change cases of letters.
+
+.small-code[
+
+```python
+'UPPER CASE STRING'.lower() # lowercase all characters
+# 'upper case string'
+```
+
+
+```python
+'lower case string'.upper() # uppercase all characters
+# 'LOWER CASE STRING'
+```
+
+
+```python
+'SOmE TiTLE'.title() # start every word with uppercase
+# 'Some Title'
+```
+
+
+```python
+# first character to uppercase, rest to lowercase
+'THis Is A SeNTEnce.'.capitalize() 
+# This is a sentence.'
+```
+]
+
+---
+##Strip functions
+Strip functions can be used to remove unnecessary spaces...
+
+.small-code[
+
+```python
+'    string with withespaces   '.lstrip()
+# 'string with withespaces   '
+```
+
+
+```python
+'    string with withespaces   '.strip()
+# 'string with withespaces'
+```
+
+
+```python
+'    string with withespaces   '.rstrip()
+# '    string with withespaces'
+```
+]
+
+---
+##Strip functions
+... and also other characters.
+
+.small-code[
+
+```python
+'    string with withespaces   '.lstrip('rst ')
+# 'ing with withespaces   '
+```
+
+
+```python
+'    string with withespaces   '.strip('rstsec ')
+# 'ing with withespa'
+```
+]
+
+---
+##str.replace
+`str.replace(old, new[, count])` can be used to replace one sub string with another, no matter where it is in the string.
+
+.small-code[
+
+```python
+'pyngon'.replace('ng', 'th')
+# 'python'
+```
+
+
+```python
+'XpythXon'.replace('X', '')
+# 'python'
+```
+
+
+```python
+'XpythXon'.replace('X', '', 1)
+'pythXon'
+```
+]
+
+---
+class: inverse
+###Exercise 3 (5 min)
+One day you get this cryptic message. Try to find out what is going on.
+
+
+```python
+msg = """   ##THe#Re @IS&amp;% sO$$mEt##hinG @#wr@O#Ng@ w##ith $m$$y %%C#o$$m#PU#t#e$r. 
+I th#$in#$k it has b%%e%%co%%me s$%#elf$#@-co&amp;#ncious a@N%d i#t ###i$s$ r%E%b%E%l%l%IN%G A@%gaI##NST$$ m#e$. 
+I##T tr##ie%&amp;s to st#%o$#p me ##fro%#m WRITTInG T#hI&amp;se#$maIL%by pu##tti#$ng ra$$nd$$$om s#$#ign#$s I#@Nt##o 
+everything I write and Lo#ck%ED me$ IN t#h&amp;e r#OO#m #2%3 B%%. 
+P$leAe$ H$eLP##!!!!          """
+```
+???
+msg.strip().replace('#', '').replace('@', '').replace('&amp;', '').replace('%', '').replace('$', '').lower()
+
+---
+##Operations on strings
+`str.split(sep=None, maxsplit=-1)` returns list of words, split on defined separator `sep`.
+
+.small-code[
+
+```python
+'xyz@gmail.com'.split('@')
+# ['xyz', 'gmail.com']
+```
+
+
+```python
+'1,2,3,4'.split(',')
+# ['1', '2', '3', '4']
+```
+
+
+```python
+'1,2,3,4'.split(',', 1)
+# ['1', '2,3,4']
+```
+]
+
+---
+class: inverse
+###Exercise 4 (5 min)
+
+Extract the country code from phone numbers below. Get rid of a plus sign where necessary.
+
+
+```python
+p_num_1 = '+48 502 345 612'
+p_num_2 = '52-661-245-097'
+p_num_3 = '38.321.443.143'
+```
+
+???
+p_num_1.split(' ')[0].lstrip('+')
+p_num_2.split('-')[0].lstrip('+')
+p_num_3.split('.')[0].lstrip('+')
+
+---
+class: inverse, bottom, center
+background-image: url('www/img/logo_white.png')
+background-size: 50%
+
+mb@idash.pl mo@idash.pl
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

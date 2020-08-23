@@ -1,0 +1,15 @@
+linki:
+
+http://reachtim.com/articles/statrep-latex.html
+
+https://support.sas.com/resources/papers/proceedings12/324-2012.pdf
+
+http://support.sas.com/resources/papers/proceedings10/154-2010.pdf
+
+http://people.stat.sfu.ca/~cschwarz/Stat-650/Notes/PDF/ChapterSASTricks.pdf
+
+http://www.hasug.org/newsletters/hasug201108/hasug_sg_procedures_selva.pdf
+
+http://www.krissharris.co.uk/SAS%209.2%20Course%20in%20PDF.pdf
+
+http://math.unm.edu/~james/SAS6.pdf

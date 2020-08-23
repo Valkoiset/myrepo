@@ -1,0 +1,27 @@
+helped with ortools:
+https://github.com/google/or-tools/issues/1291
+
+# had to downgrade version of library
+pip install ortools==6.7.4973
+or
+python -m pip install ortools==6.7.4973
+
+# later installed this one and also works:
+python -m pip install ortools==7.3.7083
+
+
+# check tools version:
+python -m pip show ortools
+
+# -----------------------------------------------
+Conclusion
+note: of course our analysis would be much more accurate if we took into account the actual cost of usage of heavy-weight and light-weight cars, we know that and it's just another point of simulation we may improve in the future.
+
+
+
+
+
+
+
+
+

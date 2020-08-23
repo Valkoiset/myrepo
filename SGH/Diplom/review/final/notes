@@ -1,0 +1,6 @@
+Deep Reinforcement Learning: training intelligent agent to play game “Flappy Bird” with Evolution Strategy algorithm
+
+Implementation of Evolution Strategy algorithm on example of mobile game "Flappy Bird".
+The objective is to prove that Evolution Strategy algorithm may be used for solving Reinforcement Learning problems and be as sufficient as older, proven to be effective algorithms, such as: Q-learning, SARSA, DQN, DDPG, A3C.
+
+Machine Learning, Deep Learning, Reinforcement Learning, Deep Reinforcement Learning, ML, DL, RL, Bellman Equation, Markov Decision Process, MDP, AI

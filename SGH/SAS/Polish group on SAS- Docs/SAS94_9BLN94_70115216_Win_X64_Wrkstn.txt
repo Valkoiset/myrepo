@@ -1,0 +1,74 @@
+[_SID_]
+Version=9.4
+Revision=9.4
+Platform_long=Microsoft Windows Workstation for x64
+Platform_short=wx6
+Order=9BLN94
+License_prod=SAS
+Setnumid=70115216
+SID_schema=2
+ph_agreement=PROMPT
+SID_header=SAS 9.4
+[_Info_]
+[_FileData_]
+$_Filename=setinit.sss
+$_Path=sas\core\sasinst\
+$_Date=
+$_Time=
+$_Stream=-------------------- BEGIN --------------------
+PROC SETINIT RELEASE='9.4';
+ SITEINFO NAME='SGH LIGHT WX6'
+ SITE=70115216 OSNAME='WX64_WKS' RECREATE WARN=31 GRACE=62
+ BIRTHDAY='06SEP2016'D  EXPIRE='30JUN2017'D PASSWORD=518932886;
+ CPU MODEL=' ' MODNUM=' ' SERIAL=' ' NAME=CPU000;
+ EXPIRE 'PRODNUM000' 'PRODNUM001' 'PRODNUM002' 'PRODNUM003'
+ 'PRODNUM005' 'PRODNUM007' 'PRODNUM008' 'PRODNUM050'
+ 'PRODNUM094' 'PRODNUM095' 'PRODNUM119' 'PRODNUM164'
+ 'PRODNUM165' 'PRODNUM166' 'PRODNUM167' 'PRODNUM208'
+ 'PRODNUM448' 'PRODNUM535' 'PRODNUM538' 'PRODNUM677'
+ 'PRODNUM678' '30JUN2017'D / CPU=CPU000;
+ SAVE; RUN;
+ *PRODNUM000 = BASE Base SAS;
+ *PRODNUM001 = STAT SAS/STAT;
+ *PRODNUM002 = GRAPH SAS/GRAPH;
+ *PRODNUM003 = ETS SAS/ETS;
+ *PRODNUM005 = OR SAS/OR;
+ *PRODNUM007 = IML SAS/IML;
+ *PRODNUM008 = QC SAS/QC;
+ *PRODNUM050 = DMINESOL Enterprise Miner Server;
+ *PRODNUM094 = SECUREBNDL SAS/Secure;
+ *PRODNUM095 = SECUREWBNDL SAS/Secure Windows;
+ *PRODNUM119 = EGUIDE SAS Enterprise Guide;
+ *PRODNUM164 = OROPT SAS/OR Optimization;
+ *PRODNUM165 = ORPRS SAS/OR Project and Resource Scheduling;
+ *PRODNUM166 = ORIVS SAS/OR Interactive Visualization and Simulation;
+ *PRODNUM167 = ORLSO SAS/OR Local Search Optimization;
+ *PRODNUM208 = PCFILE SAS/ACCESS PC Files;
+ *PRODNUM448 = DMINEDESKTOP SAS Enterprise Miner for Desktop;
+ *PRODNUM535 = STATSTUDIO SAS/IML Studio;
+ *PRODNUM538 = WKSPSRVLOCAL SAS Workspace Server for Local Access;
+ *PRODNUM677 = HPS SAS High-Performance Server;
+ *PRODNUM678 = AMOEXCEL SAS Add-in for Microsoft Excel;
+ *LICENSE=SAS 000002113288;
+ *SITEID=603032;
+ *0092277005 9.4;
+ *XYZ 603032;
+$_Stream=--------------------- END ---------------------
+$_Filename=tletter.txt
+$_Path=.\
+$_Date=
+$_Time=
+$_Stream=-------------------- BEGIN --------------------
+Microsoft Windows Workstation for x64
+Base SAS	30JUN2017
+SAS Enterprise Guide	30JUN2017
+SAS Enterprise Miner for Desktop	30JUN2017
+SAS/ACCESS Interface to PC Files	30JUN2017
+SAS/ETS	30JUN2017
+SAS/GRAPH	30JUN2017
+SAS/IML	30JUN2017
+SAS/OR	30JUN2017
+SAS/QC	30JUN2017
+SAS/STAT	30JUN2017
+$_Stream=--------------------- END ---------------------
+[_EOF_]

@@ -1,0 +1,8 @@
+5 most important concepts in RL:
+
+1) MDP (Markov Decision Process)
+2) policy
+3) state-value function
+4) action-value function
+5) bellman equation (there are actually 4 types of them)
+

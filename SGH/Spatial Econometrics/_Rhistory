@@ -1,0 +1,60 @@
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rgdal)
+library(sp)
+library(sf)
+library(RColorBrewer)
+library(spdep)
+rm(list = ls())
+if(!is.null(dev.list())) dev.off()
+cat("\014")
+setwd("C:/Users/Oleksandr/Desktop/Spatial Econometrics")
+# Homework 1
+# data1: Live births (total) by NUTS 3 region. Live births are the births of children
+# that showed any sign of life
+data <- read.csv("demo_r_births_1_Data.csv")
+#import map 2 - many levels and countries at a time
+# Since its reunification in 1990, the new Germany has consisted of 16 federal states.
+map <- readOGR(".", "NUTS_RG_01M_2013")
+map <- spTransform(map, "+proj=longlat")
+#select Germany
+map@data$NUTS_ID_char <- as.character(map@data$NUTS_ID)
+map@data$country <- substr(map@data$NUTS_ID_char, 1, 2)
+map <- map[map@data$country == "DE", ]
+# merge
+map@data$GEO <- map@data$NUTS_ID
+color <- rgb(251, 155, 68, 160, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", color), bias = 1)
+# data2: Crimes recorded by the police by NUTS 3 regions (crim_gen_reg)
+data2 <- read.csv("crim_gen_reg_1_Data.csv")
+# data3: Population density by NUTS 3 region
+data3 <- read.csv("demo_r_d3dens_1_Data.csv")
+# data4: Deaths (total) by NUTS 3 region
+data4 <- read.csv("demo_r_deaths_1_Data.csv")
+# gathering all data together
+colnames(data2) [colnames(data2) == "Value"] <- "Value2"
+colnames(data3) [colnames(data3) == "Value"] <- "Value3"
+colnames(data4) [colnames(data4) == "Value"] <- "Value4"
+data_merged <- left_join(data, data2, by = "GEO")
+data_merged <- left_join(data_merged, data3, by = "GEO")
+data_merged <- left_join(data_merged, data4, by = "GEO")
+data_merged <- data.frame(data_merged$GEO,
+data_merged$Value,
+data_merged$Value2,
+data_merged$Value3,
+data_merged$Value4)
+colnames(data_merged) <- c("GEO", "Value", "Value2", "Value3", "Value4")
+map@data <- left_join(map@data, data_merged, by = "GEO")
+spatial_data <- map
+spatial_data@data$Value <- as.numeric(spatial_data@data$Value)
+spatial_data@data$Value2 <- as.numeric(spatial_data@data$Value2)
+spatial_data@data$Value3 <- as.numeric(spatial_data@data$Value3)
+spatial_data@data$Value4 <- as.numeric(spatial_data@data$Value4)
+centroids <- coordinates(spatial_data)
+N <- nrow(spatial_data)
+# 2) based on inverted squared distances, but only up to 200 km (above
+#    that - no link at all).
+library(geospacom)
+distance <- DistanceMatrix(spatial_data, "GEO", unit = 200000)

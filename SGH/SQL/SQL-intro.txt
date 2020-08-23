@@ -1,0 +1,10 @@
+1. What are the last names and jobs (codes) of employees?
+
+2. Create a query that will return departaments names and their managers identification numbers
+
+3. Create a query that will return last names, identification numbers, quarter earnings
+   of employees. Earnings = monthly salaries and monthly commission. Remember about column 
+   aliases to improve readiness of report
+ 
+4 What are the names, jobs, current and future salaries of employees. The Management Board 
+  is planning a 10% rise of salaries. 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Final Project</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Mercer 2018" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/idash.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Final Project
+### Mercer 2018
+
+---
+
+
+class: inverse
+## Data
+
+- We'll going to work on publicly available data scrapped from AirBnb website.
+--
+
+- The dataset contains list of  properties available to rent in Amsterdam, their ratings and availability for one year onwards.
+--
+
+- Data was scrapped on 7th August 2018, meaning the availability of the properties range from 7th August 2017 to 7th August 2018.
+--
+
+The Amsterdam dataset (also other cities) is available to download from &lt;a href = "http://insideairbnb.com" target = "blank"&gt;this website&lt;/a&gt;.
+
+
+---
+class: inverse
+## Initial exploration
+
+1. Read in listings.csv.
+2. Check the number of rows and columns in the data set.
+2. Investigate data types of columns.
+3. Look at the first 10 rows.
+4. Investigate the result of `describe()`.
+
+---
+class: inverse
+### Exercise 1
+Count the number of properties of each type. Create seaborn bar plot that shows the top 5.
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_1_plt.png'&gt;
+&lt;/div&gt;
+
+---
+class: inverse
+### Exercise 2
+
+Write a loop that will plot the distributions of prices of each type of property from the top 5.
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_2_plt.png'&gt;
+&lt;/div&gt;
+
+---
+class: inverse
+### Exercise 3
+
+Calculate the number of Airbnb hosts registered in Amsterdam each year (host_since in listings). Then calculate the year-to-year growth.
+
+YTY Growth formula:
+
+(present year - past year) / past year
+
+---
+class: inverse
+### Exercise 3 (contd)
+
+Visualise the number of hosts registered and year-to-year change using seaborn.
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_3_plt.png'&gt;
+&lt;/div&gt;
+---
+class: inverse
+### Exercise 4
+Check the number of properties where smoking is allowed (use amenities column). Make sure, that the word "smoking" always comes along with the word "allowed" ("smoking allowed"). Present the solution as a seaborn's bar plot.
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_4_p1_plt.png'&gt;
+&lt;/div&gt;
+---
+class: inverse 
+### Exercise 4 (contd)
+Compare average prices (price) between properties where smoking is allowed and other properties (you can reuse some code generated in the first part of this exercise). Show the result of you calculation as a seaborn's point plot. 
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_4_p2_plt.png'&gt;
+&lt;/div&gt;
+---
+class: inverse 
+### Exercise 5
+Calculate the mean property rating (review_scores_rating) for each room type (room_type) and the presence or absence of the deposit (security_deposit). Consider only properties that have more than 50 comments (number_of_reviews). Sort results by the calculated mean property rating.
+
+---
+class: inverse 
+### Exercise 5 (contd)
+Visualize the difference between mean ratings of different room types and deposits using seaborn's catplot.
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_5_plt.png'&gt;
+&lt;/div&gt;
+---
+class: inverse 
+### Exercise 6
+Single host can own more than one property. Each property not only has a general rating score but is also rated for particular aspects like cleanliness, location etc. Calculate the average rating for each aspect for each host (identified by host_id). Create a boxplot of mean review scores rating.
+
+&lt;div style='text-align:center'&gt;
+&lt;img src='www/img/final_ex_6_plt.png'&gt;
+&lt;/div&gt;
+
+---
+class: inverse, bottom, center
+background-image: url('www/img/logo_white.png')
+background-size: 50%
+
+mb@idash.pl mo@idash.pl
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

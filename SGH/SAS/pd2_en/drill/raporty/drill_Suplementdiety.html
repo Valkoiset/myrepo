@@ -1,0 +1,1417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Generator" content="SAS Software, see www.sas.com" sasversion="9.1">
+<meta http-equiv="Content-type" content="text/html; charset=windows-1250">
+<title>SAS Output</title>
+<style type="text/css">
+<!--
+.ContentTitle
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+}
+.Output
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #000000;
+  border-width: 1px;
+  border-color: #000000;
+}
+.HeaderEmphasis
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.NoteContent
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Graph
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 1px;
+  border-color: #000000;
+}
+.WarnContentFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.NoteBanner
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.FatalContent
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.DataStrong
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.Document
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+a:link {
+color:#800080
+}
+a:visited {
+color:#0000FF
+}
+a:active {
+color:#0000FF
+}
+.BeforeCaption
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.ContentsDate
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  width: 100%;
+}
+.Pages
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  margin-left: 8px;
+  margin-right: 8px;
+  list-style-type: decimal;
+}
+.IndexProcName
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: decimal;
+}
+.ProcTitle
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Table
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 1px;
+  border-color: #000000;
+}
+.top_stacked_value
+{
+  padding-bottom: 1px;
+}
+.middle_stacked_value
+{
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.bottom_stacked_value
+{
+  padding-top: 1px;
+}
+.IndexAction
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  margin-left: 6pt;
+  list-style-type: NONE;
+}
+.Date
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  width: 100%;
+}
+.TitlesAndFooters
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Data
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.FooterEmpty
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.Container
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.SysTitleAndFooterContainer
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 0;
+  width: 100%;
+}
+.RowFooterEmpty
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.ContentFolder
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: NONE;
+}
+.RowFooterEmphasis
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.FooterFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowFooterStrongFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowFooterFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.Caption
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.WarnBanner
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Note
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Frame
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.Index
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.ExtendedPage
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 1pt;
+  text-align: center;
+}
+.HeaderStrongFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.NoteContentFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.DataEmphasisFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.Byline
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.PagesProcLabel
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: decimal;
+}
+.FatalBanner
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.PagesDate
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  width: 100%;
+}
+.ProcTitleFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.RowFooterEmphasisFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowHeaderFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.ByContentFolder
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: NONE;
+}
+.WarnContent
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.DataEmpty
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.Cell
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.PageNo
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  text-align: right;
+  vertical-align: top;
+}
+.ContentProcLabel
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: decimal;
+}
+.Body
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.Header
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowHeaderEmpty
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.HeaderFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.Batch
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  border-width: 1px;
+  border-color: #000000;
+}
+.PagesTitle
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+}
+.HeaderEmpty
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.DataFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.FooterStrong
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.FooterEmphasis
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.ErrorContent
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.PagesProcName
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: decimal;
+}
+.ContentItem
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: NONE;
+}
+.IndexTitle
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+}
+.HeaderStrong
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.DataEmphasis
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.RowFooter
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.TitleAndNoteContainer
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 0;
+  width: 100%;
+}
+.Contents
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+  margin-left: 8px;
+  margin-right: 8px;
+  list-style-type: auto;
+}
+.BylineContainer
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  border-width: 0;
+  width: 100%;
+}
+.FatalContentFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.BodyDate
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+  width: 100%;
+  text-align: right;
+  vertical-align: top;
+}
+.FooterEmphasisFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowFooterStrong
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.HeadersAndFooters
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.RowHeaderStrong
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.UserText
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.RowHeaderEmphasisFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.ErrorBanner
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.PagesItem
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: NONE;
+}
+.RowHeader
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.FooterStrongFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.ContentProcName
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  list-style-type: decimal;
+}
+.RowHeaderStrongFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.AfterCaption
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.SystemFooter
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.RowHeaderEmphasis
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.Footer
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #C4E4B8;
+}
+.FolderAction
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  margin-left: 6pt;
+  list-style-type: NONE;
+}
+.HeaderEmphasisFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  font-style: italic;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.SystemTitle
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.ErrorContentFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  background-color: #FFFFCD;
+}
+.DataStrongFixed
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+  background-color: #FFFFCD;
+}
+.IndexItem
+{
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #033366;
+  margin-left: 6pt;
+  list-style-type: NONE;
+}
+.l {text-align: left }
+.c {text-align: center }
+.r {text-align: right }
+.d {text-align: "." }
+.t {vertical-align: top }
+.m {vertical-align: middle }
+.b {vertical-align: bottom }
+TD, TH {vertical-align: top }
+.stacked_cell{padding: 0 }
+-->
+</style>
+<script language="javascript" type="text/javascript">
+<!-- 
+function startup(){
+
+}
+function shutdown(){
+
+}
+
+//-->
+</script>
+
+<noscript></noscript>
+</head>
+<body onload="startup()" onunload="shutdown()" class="Body">
+
+<script language="javascript" type="text/javascript">
+<!-- 
+var _info = navigator.userAgent
+var _ie = (_info.indexOf("MSIE") > 0
+          && _info.indexOf("Win") > 0
+          && _info.indexOf("Windows 3.1") < 0);
+
+//-->
+</script>
+
+<noscript></noscript>
+<div class="branch">
+<a name="IDX"></a>
+<table class="SysTitleAndFooterContainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c SystemTitle">Raporty OLAP - Drill-Down - Poziom grupy Suplement diety - przykłady</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table class="Table" cellspacing="1" cellpadding="2" rules="all" frame="box" border="1px" bordercolor="#000000" summary="Procedure Tabulate: Table 1">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="c m Header" rowspan="3" scope="col">Grupa wiekowa</th>
+<th class="c Header" colspan="6" scope="colgroup">Nazwa leku</th>
+<th class="c Header" rowspan="2" colspan="2" scope="colgroup">Razem</th>
+</tr>
+<tr>
+<th class="c Header" colspan="2" scope="colgroup">Asparagin      </th>
+<th class="c Header" colspan="2" scope="colgroup">Radical        </th>
+<th class="c Header" colspan="2" scope="colgroup">Spirulina      </th>
+</tr>
+<tr>
+<th class="c Header" scope="col">Suma</th>
+<th class="c Header" scope="col">Procent</th>
+<th class="c Header" scope="col">Suma</th>
+<th class="c Header" scope="col">Procent</th>
+<th class="c Header" scope="col">Suma</th>
+<th class="c Header" scope="col">Procent</th>
+<th class="c Header" scope="col">Suma</th>
+<th class="c Header" scope="col">Procent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="l t RowHeader" scope="row">18-24      </th>
+<td class="r b Data">       323.552,79 PLN</td>
+<td class="r b Data">            14,17 %</td>
+<td class="r b Data">       996.160,00 PLN</td>
+<td class="r b Data">            14,29 %</td>
+<td class="r b Data">     2.182.949,94 PLN</td>
+<td class="r b Data">            14,01 %</td>
+<td class="r b Data">     3.502.662,73 PLN</td>
+<td class="r b Data">            14,10 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">25-29      </th>
+<td class="r b Data">       304.328,97 PLN</td>
+<td class="r b Data">            13,32 %</td>
+<td class="r b Data">       941.640,00 PLN</td>
+<td class="r b Data">            13,51 %</td>
+<td class="r b Data">     2.100.706,32 PLN</td>
+<td class="r b Data">            13,48 %</td>
+<td class="r b Data">     3.346.675,29 PLN</td>
+<td class="r b Data">            13,48 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">30-39      </th>
+<td class="r b Data">       653.511,33 PLN</td>
+<td class="r b Data">            28,61 %</td>
+<td class="r b Data">     2.001.200,00 PLN</td>
+<td class="r b Data">            28,71 %</td>
+<td class="r b Data">     4.453.250,13 PLN</td>
+<td class="r b Data">            28,58 %</td>
+<td class="r b Data">     7.107.961,46 PLN</td>
+<td class="r b Data">            28,62 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">40-49      </th>
+<td class="r b Data">       582.029,73 PLN</td>
+<td class="r b Data">            25,48 %</td>
+<td class="r b Data">     1.751.660,00 PLN</td>
+<td class="r b Data">            25,13 %</td>
+<td class="r b Data">     3.968.478,64 PLN</td>
+<td class="r b Data">            25,47 %</td>
+<td class="r b Data">     6.302.168,37 PLN</td>
+<td class="r b Data">            25,38 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">50-59      </th>
+<td class="r b Data">       333.059,58 PLN</td>
+<td class="r b Data">            14,58 %</td>
+<td class="r b Data">     1.010.320,00 PLN</td>
+<td class="r b Data">            14,49 %</td>
+<td class="r b Data">     2.263.849,71 PLN</td>
+<td class="r b Data">            14,53 %</td>
+<td class="r b Data">     3.607.229,29 PLN</td>
+<td class="r b Data">            14,53 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">60 i więcej</th>
+<td class="r b Data">        87.670,08 PLN</td>
+<td class="r b Data">             3,84 %</td>
+<td class="r b Data">       269.360,00 PLN</td>
+<td class="r b Data">             3,86 %</td>
+<td class="r b Data">       610.735,03 PLN</td>
+<td class="r b Data">             3,92 %</td>
+<td class="r b Data">       967.765,11 PLN</td>
+<td class="r b Data">             3,90 %</td>
+</tr>
+<tr>
+<th class="l t RowHeader" scope="row">Razem</th>
+<td class="r b Data">     2.284.152,48 PLN</td>
+<td class="r b Data">           100,00 %</td>
+<td class="r b Data">     6.970.340,00 PLN</td>
+<td class="r b Data">           100,00 %</td>
+<td class="r b Data">    15.579.969,77 PLN</td>
+<td class="r b Data">           100,00 %</td>
+<td class="r b Data">    24.834.462,25 PLN</td>
+<td class="r b Data">           100,00 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br></p><hr size="3">
+<a name="IDX1"></a>
+<table class="SysTitleAndFooterContainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c SystemTitle">Raporty OLAP - Drill-Down - Poziom grupy Suplement diety - przykłady</td>
+</tr>
+</table><br>
+<div>
+<CENTER>
+<OBJECT 
+ CLASSID="CLSID:CE9E88DD-FC6F-11d4-87EC-00B0D025628B"
+ WIDTH="640px"
+ HEIGHT="480px"
+ ALIGN="top">
+<PARAM NAME="ENCODING" VALUE="windows-1250">
+<PARAM NAME="XMLPARM1" VALUE='
+<?xml version="1.0" encoding="windows-1250" ?>
+<SASReport version="1.0" xmlns:style="http://www.sas.com/sasreportmodel/styles">
+  <Data>
+    <IQData type="2DEmbedded" name="GraphData">
+      <EmbeddedData>
+        <Variables>
+          <Variable SASFormat="WIEKN11.0" encoding="Text" name="wiek1" varName="wiek" label="Grupa wiekowa" type="Numeric"/>
+          <Variable encoding="Text" name="lek2" varName="lek" label="Nazwa leku" type="String"/>
+          <Variable SASFormat="KWOTA21.0" encoding="Text" name="kwota_Sum4" varName="kwota_Sum" label="Kwota" type="Numeric"/>
+          <Variable SASFormat="PROCENT19.0" encoding="Text" name="kwota_PctSum_109" varName="kwota_PctSum_10" label="Procent dla leku" type="Numeric"/>
+          <Variable encoding="Text" name="__FREQ__14" varName="__FREQ__" label="Frequency" type="Numeric"/>
+        </Variables>
+        <ValuesList>
+        '
+        >
+        <PARAM NAME="XMLPARM2" VALUE='
+          <Values>
+            <Value>18.0006854347887</Value>
+            <Value>Asparagin</Value>
+            <Value>323552.790000271</Value>
+            <Value>14.1651134428741</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>24.0014819288633</Value>
+            <Value>Asparagin</Value>
+            <Value>304328.970000251</Value>
+            <Value>13.3234962492611</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>29.0006815246309</Value>
+            <Value>Asparagin</Value>
+            <Value>653511.329999477</Value>
+            <Value>28.6106700722265</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>39.0000366349704</Value>
+            <Value>Asparagin</Value>
+            <Value>582029.730000035</Value>
+            <Value>25.4812117446707</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>49.0008498425599</Value>
+            <Value>Asparagin</Value>
+            <Value>333059.580000281</Value>
+            <Value>14.5813198950812</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>59.0029591438374</Value>
+            <Value>Asparagin</Value>
+            <Value>87670.0800000208</Value>
+            <Value>3.83818859588602</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>18.0006854347887</Value>
+            <Value>Radical</Value>
+            <Value>996160</Value>
+            <Value>14.2914118966937</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>24.0014819288633</Value>
+            <Value>Radical</Value>
+            <Value>941640</Value>
+            <Value>13.5092405822384</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>29.0006815246309</Value>
+            <Value>Radical</Value>
+            <Value>2001200</Value>
+            <Value>28.7102207352869</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>39.0000366349704</Value>
+            <Value>Radical</Value>
+            <Value>1751660</Value>
+            <Value>25.1301945098804</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>49.0008498425599</Value>
+            <Value>Radical</Value>
+            <Value>1010320</Value>
+            <Value>14.4945583716145</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>59.0029591438374</Value>
+            <Value>Radical</Value>
+            <Value>269360</Value>
+            <Value>3.86437390428587</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>18.0006854347887</Value>
+            <Value>Spirulina</Value>
+            <Value>2182949.94000071</Value>
+            <Value>14.0112591502233</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>24.0014819288633</Value>
+            <Value>Spirulina</Value>
+            <Value>2100706.32000085</Value>
+            <Value>13.483378665126</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>29.0006815246309</Value>
+            <Value>Spirulina</Value>
+            <Value>4453250.12999693</Value>
+            <Value>28.5831756783815</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>39.0000366349704</Value>
+            <Value>Spirulina</Value>
+            <Value>3968478.63999774</Value>
+            <Value>25.4716709889902</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>49.0008498425599</Value>
+            <Value>Spirulina</Value>
+            <Value>2263849.71000057</Value>
+            <Value>14.530514137198</Value>
+            <Value>1</Value>
+          </Values>
+          <Values>
+            <Value>59.0029591438374</Value>
+            <Value>Spirulina</Value>
+            <Value>610735.030000034</Value>
+            <Value>3.92000138008071</Value>
+            <Value>1</Value>
+          </Values>
+        </ValuesList>
+      </EmbeddedData>
+    </IQData>
+  </Data>
+'
+>
+<PARAM NAME="XMLPARM3" VALUE='
+  <style:Scheme name="GraphStyleScheme">
+    <style:Style name="GraphScheme">
+      <style:Style context="GraphDataStyle1" color="#FFA53D" altColor="#2A25D9" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle2" color="#F7DF54" altColor="#763810" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle3" color="#EF6B48" altColor="#426952" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle4" color="#61A6E7" altColor="#C1161C" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle5" color="#CB79C8" altColor="#9D3CDB" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle6" color="#85CE79" altColor="#7F8E1F" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle7" color="#967CD0" altColor="#B26084" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle8" color="#DD6475" altColor="#2597FA" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle9" color="#9DAA2D" altColor="#C08A13" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle10" color="#6C69D9" altColor="#47A82A" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle11" color="#2EA64A" altColor="#B38EF3" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="GraphDataStyle12" color="#C17D35" altColor="#F7AC4E" fillFile="Bank64g.gif" fillType="ImageColorBlend"/>
+      <style:Style context="TwoColorRamp" fillGradientStartColor="#FFFFFF" fillGradientEndColor="#2EA64A"/>
+      <style:Style context="TwoColorAltRamp" fillGradientStartColor="#FFFFFF" fillGradientEndColor="#99CCFF"/>
+      <style:Style context="BackFill" fillGradientStartColor="#C4E4B8" fillGradientEndColor="#FFFFCD" fillGradientType="YAxis" fillType="Gradient"/>
+      <style:Style context="AxisLines" lineColor="#000000" lineThickness="2px"/>
+      <style:Style context="GridLines" lineColor="#000000"/>
+      <style:Style context="Outlines" lineColor="#000000"/>
+      <style:Style context="BorderLines" lineColor="#000000" lineThickness="2px"/>
+      <style:Style context="LabelText" textColor="#003366" fontSize="16pt" fontFamily="Times New Roman" fontWeight="bold" fontStyle="normal"/>
+      <style:Style context="ValueText" textColor="#000000" fontSize="12pt" fontFamily="Trebuchet MS" fontWeight="normal" fontStyle="normal"/>
+      <style:Style context="WallFill" fillColor="#FFFFCD" fillType="Pattern"/>
+      <style:Style context="FloorFill" fillColor="#FFFFCD" fillType="Pattern"/>
+      <style:Style context="LegendFill" fillColor="#FFFFCD" fillType="Pattern"/>
+      <style:Style context="DropShadow" shadowColor="#142A3E" xOffset="5%" yOffset="5%"/>
+    </style:Style>
+  </style:Scheme>
+  <View style:scheme="GraphStyleScheme">
+    <Section>
+      <Body>
+        <Graph name="Graph_1796753603159314806" style:height="480px" style:width="640px" style:style="GraphScheme"  view2D="false">
+          <ChartDataList>
+            <ChartData name="ChartData0" data="GraphData">
+              <Roles>
+                <Role variable="wiek1" type="Category" sortOrder="Ascending">
+                  <Categorization type="Discrete">
+                  </Categorization>
+                </Role>
+                <Role variable="lek2" type="Series" sortOrder="Ascending" missingEnabled="true">
+                  <Categorization type="Discrete">
+                  </Categorization>
+                </Role>
+                <Role variable="kwota_Sum4" type="Subgroup" sortOrder="Ascending" missingEnabled="true">
+                </Role>
+                <Role variable="kwota_PctSum_109" type="Response" statistic="Sum">
+                </Role>
+                <Role variable="__FREQ__14" type="Frequency">
+                </Role>
+              </Roles>
+            </ChartData>
+          </ChartDataList>
+          <ChartAreas>
+            <ChartArea>
+              <ChartBorderLine lineVisible="false"/>
+              <Charts>
+                <Bar name="Chart0" chartData="ChartData0" styleBy="Series" barShape="Block">
+                </Bar>
+              </Charts>
+              <Axes>
+                <Axis name="Axis0" role="Category" minorTickCount="0" gridPosition="Back">
+                  <Grid lineVisible="true"/>
+                  <Line lineVisible="true"/>
+                  <Label textVisible="true"/>
+                  <AxisValues textVisible="true"/>
+                </Axis>
+                <Axis name="Axis1" role="Response" gridPosition="Back">
+                  <Grid lineVisible="true"/>
+                  <Line lineVisible="true"/>
+                  <Label textVisible="true"/>
+                  <AxisValues textVisible="true"/>
+                </Axis>
+                <Axis name="Axis2" role="Series" minorTickCount="0" gridPosition="Back">
+                  <Grid lineVisible="true"/>
+                  <Line lineVisible="true"/>
+                  <Label textVisible="true"/>
+                  <AxisValues textVisible="true"/>
+                </Axis>
+              </Axes>
+            </ChartArea>
+          </ChartAreas>
+          <Legends>
+            <Legend chart="Chart0" isVisible="false">
+            </Legend>
+          </Legends>
+        </Graph>
+      </Body>
+    </Section>
+  </View>
+  <Formats>
+    <Format name="WIEKN">
+      <Type> Value </Type>
+      <Name-Options  />
+      <Mapping>
+        <Range> LOW-24 </Range>
+        <Label> &amp;apos;18-24&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+      <Mapping>
+        <Range> 24&amp;lt;-29 </Range>
+        <Label> &amp;apos;25-29&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+      <Mapping>
+        <Range> 29&amp;lt;-39 </Range>
+        <Label> &amp;apos;30-39&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+      <Mapping>
+        <Range> 39&amp;lt;-49 </Range>
+        <Label> &amp;apos;40-49&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+      <Mapping>
+        <Range> 49&amp;lt;-59 </Range>
+        <Label> &amp;apos;50-59&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+      <Mapping>
+        <Range> 59&amp;lt;-HIGH </Range>
+        <Label> &amp;apos;60 i więcej&amp;apos; </Label> 
+        <Label-Options  />
+      </Mapping>
+    </Format>
+  <Format name="KWOTA">
+    <Type> Picture </Type>
+    <Name-Options max="40" default="21" round="True" />
+    <Mapping>
+      <Range> LOW--0.005 </Range>
+      <Label> &amp;apos;00.000.000.009,99 PLN&amp;apos; </Label> 
+      <Label-Options  mult="100" prefix="-" />
+    </Mapping>
+    <Mapping>
+      <Range> -0.005&amp;lt;-HIGH </Range>
+      <Label> &amp;apos;00.000.000.009,99 PLN&amp;apos; </Label> 
+      <Label-Options  mult="100" />
+    </Mapping>
+  </Format>
+<Format name="PROCENT">
+  <Type> Picture </Type>
+  <Name-Options max="40" default="19" round="True" />
+  <Mapping>
+    <Range> LOW--0.005 </Range>
+    <Label> &amp;apos;00.000.000.009,99 %&amp;apos; </Label> 
+    <Label-Options  mult="100" prefix="-" />
+  </Mapping>
+  <Mapping>
+    <Range> -0.005&amp;lt;-HIGH </Range>
+    <Label> &amp;apos;00.000.000.009,99 %&amp;apos; </Label> 
+    <Label-Options  mult="100" />
+  </Mapping>
+</Format>
+</Formats>
+</SASReport>
+'
+>
+<PARAM NAME="XMLPARMCOUNT" VALUE="3">
+Sorry, there was a problem with the Graph control or plug-in in your browser.
+The graph "BLOCK chart of wiek" cannot be displayed.
+</OBJECT> 
+</CENTER>
+</div>
+<br>
+</div>
+</body>
+</html>

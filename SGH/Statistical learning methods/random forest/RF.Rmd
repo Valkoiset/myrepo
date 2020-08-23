@@ -1,0 +1,105 @@
+---
+title: "RF"
+output: html_document
+---
+read this as well: https://www.moodysanalytics.com/risk-perspectives-magazine/managing-disruption/spotlight/machine-learning-challenges-lessons-and-opportunities-in-credit-risk-modeling
+
+loading the required packages
+
+```{r}
+require(randomForest)
+require(MASS) #Package which contains the Boston housing dataset
+attach(Boston)
+set.seed(101)
+
+dim(Boston)
+```
+
+Saperating Training and Test Sets
+training Sample with 300 observations
+
+```{r}
+train=sample(1:nrow(Boston),300)
+?Boston  #to search on the dataset
+```
+
+We are going to use variable ′medv′ as the Response variable, which is the Median Housing Value. We will fit 500 Trees.
+
+Fitting the Random Forest
+We will use all the Predictors in the dataset.
+
+```{r}
+Boston.rf=randomForest(medv ~ . , data = Boston , subset = train)
+Boston.rf
+```
+
+The above Mean Squared Error and Variance explained are calculated using Out of Bag Error Estimation.In this \(\frac23\) of Training data is used for training and the remaining \( \frac13 \) is used to Validate the Trees. Also, the number of variables randomly selected at each split is 4.
+
+Plotting the Error vs Number of Trees Graph.
+
+```{r}
+plot(Boston.rf)
+```
+
+This plot shows the Error and the Number of Trees.We can easily notice that how the Error is dropping as we keep on adding more and more trees and average them.
+
+Now we can compare the Out of Bag Sample Errors and Error on Test set
+The above Random Forest model chose Randomly 4 variables to be considered at each split. We could now try all possible 13 predictors which can be found at each split.
+
+```{r}
+oob.err=double(13)
+test.err=double(13)
+```
+
+#mtry is no of Variables randomly chosen at each split
+
+```{r}
+for(mtry in 1:13) 
+{
+  rf=randomForest(medv ~ . , data = Boston , subset = train,mtry=mtry,ntree=400) 
+  oob.err[mtry] = rf$mse[400] #Error of all Trees fitted
+  
+  pred<-predict(rf,Boston[-train,]) #Predictions on Test Set for each Tree
+  test.err[mtry]= with(Boston[-train,], mean( (medv - pred)^2)) #Mean Squared Test Error
+  
+  cat(mtry," ") #printing the output to the console
+}
+```
+
+Test Error
+
+```{r}
+test.err
+```
+
+Out of Bag Error Estimation
+
+```{r}
+oob.err
+```
+
+What happens is that we are growing 400 trees for 13 times i.e for all 13 predictors.
+
+Plotting both Test Error and Out of Bag Error
+
+```{r}
+matplot(1:mtry , cbind(oob.err,test.err), pch=19 , col=c("red","blue"),type="b",ylab="Mean Squared Error",xlab="Number of Predictors Considered at each Split")
+legend("topright",legend=c("Out of Bag Error","Test Error"),pch=19, col=c("red","blue"))
+```
+
+Now what we observe is that the Red line is the Out of Bag Error Estimates and the Blue Line is the Error calculated on Test Set. Both curves are quite smooth and the error estimates are somewhat correlated too. The Error Tends to be minimized at around \( mtry = 4 \) .
+
+On the Extreme Right Hand Side of the above plot, we considered all possible 13 predictors at each Split which is only Bagging.
+
+Conclusion
+Now in this article, I gave a simple overview of Random Forests and how they differ from other Ensemble Learning Techniques and also learned how to implement such complex and Strong Modelling Technique in R with a simple package randomForest.Random Forests are a very Nice technique to fit a more Accurate Model by averaging Lots of Decision Trees and reducing the Variance and avoiding Overfitting problem in Trees. Decision Trees themselves are poor performance wise, but when used with Ensembling Techniques like Bagging, Random Forests etc, their predictive performance is improved a lot.Now obviously there are various other packages in R which can be used to implement Random Forests in R.
+
+I hope the tutorial is enough to get you started with implementing Random Forests in R or at least understand the basic idea behind how this amazing Technique works.
+
+Thanks for reading the article and make sure to like and share it.
+
+
+
+
+
+

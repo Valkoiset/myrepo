@@ -1,0 +1,35 @@
+taxi version now is v3, not v2!!!
+
+python 2 xrange() has been changed to range() in python 3
+
+# how to open terminal in a given folder
+https://www.youtube.com/watch?v=Pz4yHAB3G8w
+
+to run trained model type:
+python flappy_bird.py play
+
+
+# ----------- thesis template -----------
+write sources (own elaboration if it's mine)
+number equations (in square brackets like [2.1]
+
+overall about 50 pages
+20-22 pages of theory
+20 of demonstration of my solution
+left - code
+
+
+Examples 20
+Elements of Reinforcement Learning 21
+Limitations and scope 23
+The Agent-Environment Interface 24
+Goals and Rewards 26
+Returns 28
+Implementation of agent playing “Flappy Bird” game 30
+Evolution Strategy 30
+Evolution Strategy Theory 31
+Conclusion 35
+Code 36
+Sources 44
+
+

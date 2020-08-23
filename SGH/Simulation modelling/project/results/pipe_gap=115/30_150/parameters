@@ -1,0 +1,5 @@
+pipe_gap = 110
+population_size = 75
+num_iters = 500
+
+Full time training: 0:08:33.358744

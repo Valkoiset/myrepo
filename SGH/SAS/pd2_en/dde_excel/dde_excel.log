@@ -1,0 +1,470 @@
+1                                           The SAS System            01:45 Thursday, January 12, 2017
+
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M2) 
+      Licensed to SGH EAS WX6, Site 70110891.
+NOTE: This session is executing on the X64_8HOME  platform.
+
+
+
+NOTE: Updated analytical products:
+      
+      SAS/STAT 13.2
+      SAS/ETS 13.2
+      SAS/OR 13.2
+      SAS/IML 13.2
+      SAS/QC 13.2
+
+NOTE: Additional host information:
+
+ X64_8HOME WIN 6.2.9200  Workstation
+
+NOTE: SAS initialization used:
+      real time           0.31 seconds
+      cpu time            0.24 seconds
+      
+1          %let kat_template=d:\karol\oferta_zajec\pd2_en\dde_excel\;
+2          %let kat_out=&kat_template.out\;
+3          
+4          %macro insert(x1,x2,x3,name);
+5          data _null_;
+6            length file $300;
+7            filename ddedata dde
+8              'excel|system';
+9            file ddedata;
+10           file='[open("'||"&kat_template"||'template.xlsx")]';
+11           put file;
+12         run;
+13         
+14         data w;
+15           filename ddedata dde
+16             'excel|input!w4k2:w6k2';
+17           file ddedata;
+18           x=sleep(2);
+19           format x numx15.4;
+20           x = &x1;
+21           put x;
+22           x = &x2;
+23           put x;
+24           x = &x3;
+25           put x;
+26         run;
+27         
+28         data _null_;
+29           length file $300;
+30           filename ddedata dde
+31             'excel|system';
+2                                           The SAS System            01:45 Thursday, January 12, 2017
+
+32           file ddedata;
+33           file='[save.as("'||"&kat_out"||"&name"||'")]';
+34           put file;
+35           put '[close()]';
+36         run;
+37         %mend;
+38         
+39         data rap;
+40         infile "&kat_template.reports.txt" dlm=' ';
+41         length x1 x2 x3 8 name $30;
+42         informat x1 x2 x3 best.;
+43         input x1 x2 x3 name;
+44         run;
+
+NOTE: The infile "d:\karol\oferta_zajec\pd2_en\dde_excel\reports.txt" is:
+      Filename=d:\karol\oferta_zajec\pd2_en\dde_excel\reports.txt,
+      RECFM=V,LRECL=32767,File Size (bytes)=250,
+      Last Modified=12 stycznia 2017 01:43:12,
+      Create Time=12 stycznia 2017 01:34:39
+
+NOTE: 6 records were read from the infile "d:\karol\oferta_zajec\pd2_en\dde_excel\reports.txt".
+      The minimum record length was 28.
+      The maximum record length was 46.
+NOTE: The data set WORK.RAP has 6 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+
+45         data _null_;
+46         set rap(obs=1) nobs=il;
+47         call symput('ilr',put(il,best12.-L));
+48         run;
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+49         %put &ilr;
+6
+50         
+51         options noxwait noxsync;
+52         filename sas2xl dde 'excel|system';
+53         data _null_;
+54         length fid rc start stop time 8;
+55         fid=fopen('sas2xl','s');
+56         if (fid le 0) then do;
+57         rc=system('start excel');
+58         start=datetime();
+59         stop=start+10;
+60         do while (fid le 0);
+61         fid=fopen('sas2xl','s');
+3                                           The SAS System            01:45 Thursday, January 12, 2017
+
+62         time=datetime();
+63         if (time ge stop) then fid=1;
+64         end;
+65         end;
+66         rc=fclose(fid);
+67         run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.75 seconds
+      cpu time            0.06 seconds
+      
+
+68         
+69         
+70         
+71         %macro laduj;
+72         %do i=1 %to &ilr;
+73         /*%do i=1 %to 1;*/
+74         data _null_;
+75         set rap(firstobs=&i obs=&i);
+76         call symput('x1',put(x1,best12.-L));
+77         call symput('x2',put(x2,best12.-L));
+78         call symput('x3',put(x3,best12.-L));
+79         call symput('name',trim(name));
+80         run;
+81         %insert(&x1,&x2,&x3,&name);
+82         %end;
+83         %mend;
+84         %laduj;
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.40 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+4                                           The SAS System            01:45 Thursday, January 12, 2017
+
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 9.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           2.29 seconds
+      cpu time            0.03 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 66.
+NOTE: DATA statement used (Total process time):
+      real time           0.41 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.30 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 11.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+5                                           The SAS System            01:45 Thursday, January 12, 2017
+
+      real time           2.23 seconds
+      cpu time            0.03 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 66.
+NOTE: DATA statement used (Total process time):
+      real time           0.41 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.38 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 11.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           2.24 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+6                                           The SAS System            01:45 Thursday, January 12, 2017
+
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 66.
+NOTE: DATA statement used (Total process time):
+      real time           0.42 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.34 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 7.
+      The maximum record length was 11.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           2.21 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 68.
+7                                           The SAS System            01:45 Thursday, January 12, 2017
+
+NOTE: DATA statement used (Total process time):
+      real time           0.43 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.40 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 7.
+      The maximum record length was 7.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           2.26 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 69.
+NOTE: DATA statement used (Total process time):
+      real time           0.41 seconds
+      cpu time            0.01 seconds
+      
+
+
+8                                           The SAS System            01:45 Thursday, January 12, 2017
+
+NOTE: There were 1 observations read from the data set WORK.RAP.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 62.
+      The maximum record length was 62.
+NOTE: DATA statement used (Total process time):
+      real time           0.36 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|input!w4k2:w6k2,RECFM=V,
+      LRECL=32767
+
+NOTE: 3 records were written to the file DDEDATA.
+      The minimum record length was 6.
+      The maximum record length was 7.
+NOTE: The data set WORK.W has 1 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           2.27 seconds
+      cpu time            0.03 seconds
+      
+
+
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 2 records were written to the file DDEDATA.
+      The minimum record length was 9.
+      The maximum record length was 70.
+NOTE: DATA statement used (Total process time):
+      real time           0.43 seconds
+      cpu time            0.00 seconds
+      
+
+85         
+86         data _null_;
+87           length file $300;
+88           filename ddedata dde
+89             'excel|system';
+90           file ddedata;
+91           put '[quit()]';
+9                                           The SAS System            01:45 Thursday, January 12, 2017
+
+92         run;
+
+NOTE: Variable file is uninitialized.
+NOTE: The file DDEDATA is:
+      DDE Session,
+      SESSION=excel|system,RECFM=V,LRECL=32767
+
+NOTE: 1 record was written to the file DDEDATA.
+      The minimum record length was 8.
+      The maximum record length was 8.
+NOTE: DATA statement used (Total process time):
+      real time           0.18 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           19.67 seconds
+      cpu time            0.62 seconds
+      

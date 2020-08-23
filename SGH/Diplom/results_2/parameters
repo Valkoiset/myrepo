@@ -1,0 +1,4 @@
+pipe_gap = 100
+population_size = 75
+num_iters = 500
+

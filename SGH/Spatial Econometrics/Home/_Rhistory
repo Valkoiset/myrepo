@@ -1,0 +1,480 @@
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+x <- search_eurostat("")
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2016)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+select(-unit)
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+View(merged)
+View(current_pop)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017")
+View(current_pop)
+View(geodata)
+View(current_pop)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2016)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017")
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+View(merged)
+# plot map
+ggplot(data = merged, aes(x=time,y=values)) +
+geom_polygon(aes(fill=values),color="dim grey", size=.1)
+# plot map
+ggplot(data = merged, aes(x=long,y=lat)) +
+geom_polygon(aes(fill=values),color="dim grey", size=.1)
+merged %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = F))
+View(merged)
+merged %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+View(merged)
+View(current_pop)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+View(current_pop)
+View(x)
+View(merged)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+View(merged)
+install.packages("colorbrewer")
+library(colorbrewer)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+# spplot(obj = merged, "cat",
+main = "",
+col.regions)
+spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+library(rgdal)
+library(sp)
+spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rgdal)
+library(sp)
+sp::spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rgdal)
+library(sp)
+x <- search_eurostat("")
+View(x)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2016)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+library(colorbrewer)
+# plot map
+ggplot(data = merged, aes(x=long,y=lat)) +
+geom_polygon(aes(fill=values),color="dim grey", size=.1)
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+sp::spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+spplot(merged)
+library(sf)
+sp::spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+install.packages("RColorBrewer")
+library(RColorBrewer)
+sp::spplot(obj = merged, "cat",
+main = "")
+# set working directory - the same where we unpacked the downloaded files
+# setwd("C:/Users/Oleksandr/Desktop/R")
+setwd("C:/Users/Oleksandr/Desktop/Spatial Econometrics/1 lesson/Class")
+# clear the workspace, plots and console
+rm(list = ls())
+if(!is.null(dev.list())) dev.off()
+cat("\014")
+# packages for i.a. working with maps and visualising data on maps
+library(rgdal)
+library(sp)
+# import map 1 - level of poviats, correct projection (source: Centralny Orodek Dokumentacji Geodezyjnej i Kartograficznej,
+#                                                       http://www.codgik.gov.pl/index.php/darmowe-dane/prg.html)
+mapa1 <- readOGR(".", "powiaty")
+#This map is accurate and well-described, but the coordinates are coded in a different way than we need.
+#We should recalculate them into degrees of longitude and latitude.
+mapa1 <- spTransform(mapa1, "+proj=longlat")
+plot(mapa1)
+#Import other data
+dane <- read.csv("BDL_dane.csv", header = TRUE, sep = ";", dec = ",")
+#Import other data
+dane <- read.csv("BDL_dane.csv", header = TRUE, sep = ";", dec = ",")
+mapa@data$kod <- as.numeric(as.character(mapa@data$jpt_kod_je))
+#Ultimately we use the map of poviats provided by CODGiK:
+mapa <- mapa1
+rm(mapa1, mapa2, mapa3, mapa2_NUTS2, mapa2_NUTS3)
+#Import other data
+dane <- read.csv("BDL_dane.csv", header = TRUE, sep = ";", dec = ",")
+mapa@data$kod <- as.numeric(as.character(mapa@data$jpt_kod_je))
+#Put the spatial and economic databases together, remove the partial databases
+spatial_data <- merge(y = dane, x = mapa, by.y = "kod", by.x = "kod")
+rm(mapa)
+rm(dane)
+#illustrate variable
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(spatial_data, zcol = "bezrobocie", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(spatial_data, zcol = "bezrobocie", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+x <- search_eurostat("")
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rgdal)
+library(sp)
+library(sf)
+library(RColorBrewer)
+x <- search_eurostat("")
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2016)
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+# plot map
+ggplot(data = merged, aes(x=long,y=lat)) +
+geom_polygon(aes(fill=values),color="dim grey", size=.1)
+merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(merged, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+View(spatial_data)
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+merged <- left_join(geodata@data, data, by = "geo")
+View(geodata)
+View(merged)
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, data, by = "geo")
+View(geodata)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "0",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("apro_mk_colm", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, data, by = "geo")
+View(geodata)
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+spplot(geodata, "cat")
+View(current_pop)
+View(x)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "0",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+View(current_pop)
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment")
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment", xlim = c(-22, 34), ylim = c(35, 70))
+x <- search_eurostat("")
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 9, decimals = 2))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100), cuts = 99,
+par.settings = list(axis.line = list(col =  'transparent')),
+main = "Unemployment", xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 7, decimals = 2))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100),
+cuts = 99, par.settings = list(axis.line = list(col =  'transparent')),
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, n = 5, decimals = 2))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100),
+cuts = 99, par.settings = list(axis.line = list(col =  'transparent')),
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+View(current_pop)
+View(current_pop)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(100,900,700,600,400,200)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100),
+cuts = 99, par.settings = list(axis.line = list(col =  'transparent')),
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,100,900,2000,5000,10000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+green_area <- rgb(24, 121, 104, 80, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", green_area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100),
+cuts = 99, par.settings = list(axis.line = list(col =  'transparent')),
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,100,900,2000,5000,10000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+area <- rgb(54, 141, 174, 60, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", area), bias = 1)
+spplot(geodata, zcol = "cat", colorkey = TRUE, col.regions = pal(100),
+cuts = 99, par.settings = list(axis.line = list(col =  'transparent')),
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, "cat", color.regions = c("dim grey",
+brewer.pal(n = 7, name = "purpules")),
+col = "white", usePolypath = FALSE)
+spplot(geodata, "cat", color.regions = c("dim grey",
+brewer.pal(n = 7, name = "Purpules")),
+col = "white", usePolypath = FALSE)
+spplot(geodata, "cat", color.regions = c("dim grey",
+brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE)
+spplot(geodata, "cat", color.regions = c("dim grey",
+brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE +
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, "cat", +
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70) + color.regions = c("dim grey",
+brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE)
+spplot(geodata, "cat",
+color.regions = c("dim grey", brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE +
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,5000,10000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+area <- rgb(54, 141, 174, 60, names = NULL, maxColorValue = 255)
+pal <- colorRampPalette(c("white", area), bias = 1)
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 8, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,5000,10000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 8, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 6, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 6, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,5000,10000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 8, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1,50, 100,900,2000,5000,10000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 7, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1, 50, 100, 2000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "Purples")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "3",
+year = 2016, output_class = "spdf")
+# Data from Eurostat
+current_pop <- get_eurostat("demo_r_d3dens", time_format = "raw", stringsAsFactors = FALSE) %>%
+filter(substr(time, 1, 4) == "2017") %>%
+dplyr::mutate(cat = cut_to_classes(values, manual = T, decimals = 2,
+manual_breaks = c(1, 50, 100, 2000, 13000)))
+# merged <- merge(geodata, current_pop, by.x = "geo", by.y = "geo")
+geodata@data <- left_join(geodata@data, current_pop, by = "geo")
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region
+(The ratio between the annual average population and the land area)",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region
+(The ratio between the annual average
+population and the land area)",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region
+(The ratio between the annual average
+population and the land area)",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region
+(The ratio between the annual average
+population and the land area)",
+xlim = c(-22, 34), ylim = c(35, 70))
+spplot(geodata, zcol = "cat", color.regions = c("dim grey", brewer.pal(n = 5, name = "PiYG")),
+col = "white", usePolypath = FALSE,
+main = "Population density by NUTS 3 region
+(The ratio between the annual average
+population and the land area, persons per km2)",
+xlim = c(-22, 34), ylim = c(35, 70))
+saveRDS(current_pop, "demo_r_d3dens.rds")
+setwd("C:/Users/Oleksandr/Desktop/Spatial Econometrics/1 lesson/Home")
+saveRDS(current_pop, "demo_r_d3dens.rds")
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rgdal)
+library(sp)
+library(sf)
+library(RColorBrewer)
+setwd("C:/Users/Oleksandr/Desktop/Spatial Econometrics/1 lesson/Home")

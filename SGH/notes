@@ -1,0 +1,36 @@
+
+teacher's website:
+http://iiigc2.sgh.waw.pl/prubach/?fbclid=IwAR2hyeZMh4wUezOoU9YbAtG8y1UM5UaSFz05AZlsGQhdyKMIE3xYrx2zbkU
+
+
+credentials on site:
+Login name: Python1
+Password: monty
+
+# ----------------------------------------------------------------------------------
+unman -a
+echo $SHELL
+
+to see all environment variables:
+export
+
+use ./ to use the local directory
+
+to set path to python manually
+create the script which contains the following:
+
+#!/bin/bash
+export PYTHON_HOME=/usr/bin
+export PATH=$PYTHON_HOME:$PATH
+alis py='/usr/bin/python'
+
+to change the mode of permission:
+chmod +x [name of file]
+
+to copy path of the folder:
+https://apple.stackexchange.com/questions/338898/how-to-copy-path-of-a-file-in-mac-os
+
+
+
+
+

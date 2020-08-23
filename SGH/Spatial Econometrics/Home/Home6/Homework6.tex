@@ -1,0 +1,614 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework6.R},
+            pdfauthor={valkoiset},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework6.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{valkoiset}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Thu May 23 19:57:43 2019}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#INSTALLING PACKAGES (previously installed packages commented - please uncomment if necessary)}
+\CommentTok{# install.packages("rgdal")}
+\CommentTok{# install.packages("sp")}
+\CommentTok{# install.packages("spdep")}
+
+\KeywordTok{library}\NormalTok{(rgdal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: sp
+\end{verbatim}
+
+\begin{verbatim}
+## rgdal: version: 1.3-9, (SVN revision 794)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 2.1.3, released 2017/20/01
+##  Path to GDAL shared files: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/rgdal/gdal
+##  GDAL binary built with GEOS: FALSE 
+##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
+##  Path to PROJ.4 shared files: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/rgdal/proj
+##  Linking to sp version: 1.3-1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sp)}
+\KeywordTok{library}\NormalTok{(spdep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: spData
+\end{verbatim}
+
+\begin{verbatim}
+## To access larger datasets in this package, install the spDataLarge
+## package with: `install.packages('spDataLarge',
+## repos='https://nowosad.github.io/drat/', type='source')`
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: sf
+\end{verbatim}
+
+\begin{verbatim}
+## Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#SET WORKING DIRECTORY}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/Desktop/SGH/2 semester/Spatial Econometrics"}\NormalTok{)}
+
+\CommentTok{# clear the workspace, plots and console}
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.null}\NormalTok{(}\KeywordTok{dev.list}\NormalTok{())) }\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## null device 
+##           1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}014}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Map of Germany with already chosen and merged variables x (Deaths (number of}
+\CommentTok{# deaths in each region in 2017)) and Fertility rate}
+\NormalTok{map <-}
+\StringTok{  }\KeywordTok{readOGR}\NormalTok{(}\DataTypeTok{dsn =} \StringTok{"spatial_data"}\NormalTok{,}
+          \DataTypeTok{layer =} \StringTok{"spatial_final"}\NormalTok{,}
+          \DataTypeTok{stringsAsFactors =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/Users/valkoiset/Desktop/SGH/2 semester/Spatial Econometrics/spatial_data", layer: "spatial_final"
+## with 413 features
+## It has 11 fields
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(map, }\StringTok{"+proj=longlat"}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(map)}
+
+\CommentTok{#Linear model (from specific...?)}
+\NormalTok{map}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{l_Deaths <-}\StringTok{ }\KeywordTok{log}\NormalTok{(map}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{Deaths)}
+\NormalTok{mod.lin <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{data =}\NormalTok{ map)}
+\KeywordTok{summary}\NormalTok{(mod.lin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = l_Deaths ~ Fertlty, data = map)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5692 -0.3499  0.4422  0.7399  1.1467 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.5674203  0.1021751  44.702  < 2e-16 ***
+## Fertlty     0.0017369  0.0004219   4.117 4.64e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.067 on 411 degrees of freedom
+## Multiple R-squared:  0.03961,    Adjusted R-squared:  0.03727 
+## F-statistic: 16.95 on 1 and 411 DF,  p-value: 4.642e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont1 <-}\StringTok{ }\KeywordTok{poly2nb}\NormalTok{(map, }\DataTypeTok{queen =}\NormalTok{ T)}
+\NormalTok{W1_list <-}\StringTok{ }\KeywordTok{nb2listw}\NormalTok{(cont1, }\DataTypeTok{style =} \StringTok{"W"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{lm.morantest}\NormalTok{(mod.lin, W1_list, }\DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Global Moran I for regression residuals
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## Moran I statistic standard deviate = 4.3635, p-value = 6.399e-06
+## alternative hypothesis: greater
+## sample estimates:
+## Observed Moran I      Expectation         Variance 
+##     0.1208350478    -0.0026118797     0.0008003608
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#General model GNS (from general...?)}
+\NormalTok{mod.GNS1 <-}\StringTok{ }\KeywordTok{sacsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map,}
+                     \DataTypeTok{type =} \StringTok{"sacmixed"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.GNS1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:sacsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     type = "sacmixed", zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.38240 -0.23527  0.34744  0.58324  1.76143 
+## 
+## Type: sacmixed 
+## Coefficients: (asymptotic standard errors) 
+##                Estimate  Std. Error z value  Pr(>|z|)
+## (Intercept)  1.41374844  0.45824301  3.0852  0.002034
+## Fertlty      0.00164227  0.00041307  3.9757 7.016e-05
+## lag.Fertlty -0.00016597  0.00081956 -0.2025  0.839520
+## 
+## Rho: 0.64538
+## Asymptotic standard error: 0.10348
+##     z-value: 6.2369, p-value: 4.4639e-10
+## Lambda: -0.53541
+## Asymptotic standard error: 0.16524
+##     z-value: -3.2402, p-value: 0.0011943
+## 
+## LR test value: 23.475, p-value: 3.2153e-05
+## 
+## Log likelihood: -600.069 for sacmixed model
+## ML residual variance (sigma squared): 0.96997, (sigma: 0.98487)
+## Number of observations: 413 
+## Number of parameters estimated: 6 
+## AIC: 1212.1, (AIC for lm: 1229.6)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Depends on W matrix! (which one is the best in socio-economic terms?)}
+\CommentTok{#...and on the significance level}
+\CommentTok{#What does the Monte Carlo research and the literature say?}
+
+
+\CommentTok{#From specific to general (single-source models)}
+\KeywordTok{lm.LMtests}\NormalTok{(mod.lin, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{test =} \StringTok{"all"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## LMerr = 17.892, df = 1, p-value = 2.338e-05
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## LMlag = 22.016, df = 1, p-value = 2.704e-06
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## RLMerr = 0.045888, df = 1, p-value = 0.8304
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## RLMlag = 4.1698, df = 1, p-value = 0.04115
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: lm(formula = l_Deaths ~ Fertlty, data = map)
+## weights: W1_list
+## 
+## SARMA = 22.062, df = 2, p-value = 1.619e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#...which model is indicated by the tests? Which one by the robust tests?}
+\NormalTok{mod.SLM1 <-}\StringTok{ }\KeywordTok{lagsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SLM1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:lagsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.46826 -0.29566  0.36942  0.64321  2.00454 
+## 
+## Type: lag 
+## Regions with no neighbours included:
+##  279 
+## Coefficients: (asymptotic standard errors) 
+##               Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 3.19241893 0.36137486  8.8341 < 2.2e-16
+## Fertlty     0.00169005 0.00041017  4.1203 3.783e-05
+## 
+## Rho: 0.27583, LR test value: 17.091, p-value: 3.5629e-05
+## Asymptotic standard error: 0.071234
+##     z-value: 3.8721, p-value: 0.00010788
+## Wald statistic: 14.993, p-value: 0.00010788
+## 
+## Log likelihood: -603.2608 for lag model
+## ML residual variance (sigma squared): 1.076, (sigma: 1.0373)
+## Number of observations: 413 
+## Number of parameters estimated: 4 
+## AIC: 1214.5, (AIC for lm: 1229.6)
+## LM test for residual autocorrelation
+## test value: 3.0409, p-value: 0.081191
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod.SEM1 <-}\StringTok{ }\KeywordTok{errorsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SEM1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## errorsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.48606 -0.34153  0.38298  0.65233  2.02737 
+## 
+## Type: error 
+## Regions with no neighbours included:
+##  279 
+## Coefficients: (asymptotic standard errors) 
+##               Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 4.56455708 0.11079363  41.199 < 2.2e-16
+## Fertlty     0.00157255 0.00041679   3.773 0.0001613
+## 
+## Lambda: 0.26334, LR test value: 13.473, p-value: 0.00024208
+## Asymptotic standard error: 0.077254
+##     z-value: 3.4087, p-value: 0.00065266
+## Wald statistic: 11.619, p-value: 0.00065266
+## 
+## Log likelihood: -605.07 for error model
+## ML residual variance (sigma squared): 1.0865, (sigma: 1.0424)
+## Number of observations: 413 
+## Number of parameters estimated: 4 
+## AIC: 1218.1, (AIC for lm: 1229.6)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod.SLX1 <-}\StringTok{ }\KeywordTok{lmSLX}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SLX1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
+##     data = as.data.frame(x), weights = weights)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.6659 -0.3009  0.4118  0.6926  1.1837 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.1878616  0.1968701  21.272  < 2e-16 ***
+## Fertlty     0.0016081  0.0004237   3.795  0.00017 ***
+## lag.Fertlty 0.0019321  0.0008582   2.251  0.02489 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.062 on 410 degrees of freedom
+## Multiple R-squared:  0.05133,    Adjusted R-squared:  0.04671 
+## F-statistic: 11.09 on 2 and 410 DF,  p-value: 2.033e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Multi-source models - does it make sense to estimate all of them individually?}
+\NormalTok{mod.SARAR1 <-}\StringTok{ }\KeywordTok{sacsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SARAR1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:sacsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.39884 -0.24240  0.35086  0.58715  1.74311 
+## 
+## Type: sac 
+## Coefficients: (asymptotic standard errors) 
+##               Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 1.44547855 0.46283419  3.1231   0.00179
+## Fertlty     0.00160963 0.00037204  4.3265 1.515e-05
+## 
+## Rho: 0.63333
+## Asymptotic standard error: 0.096562
+##     z-value: 6.5588, p-value: 5.4242e-11
+## Lambda: -0.51747
+## Asymptotic standard error: 0.15681
+##     z-value: -3.2999, p-value: 0.00096721
+## 
+## LR test value: 23.442, p-value: 8.1221e-06
+## 
+## Log likelihood: -600.0854 for sac model
+## ML residual variance (sigma squared): 0.9749, (sigma: 0.98737)
+## Number of observations: 413 
+## Number of parameters estimated: 5 
+## AIC: 1210.2, (AIC for lm: 1229.6)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod.SDM1 <-}\StringTok{ }\KeywordTok{lagsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{type =} \StringTok{"Durbin"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SDM1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:lagsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     type = "Durbin", zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.51665 -0.29176  0.35274  0.64958  1.75422 
+## 
+## Type: mixed 
+## Regions with no neighbours included:
+##  279 
+## Coefficients: (asymptotic standard errors) 
+##               Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 3.02898137 0.36681108  8.2576  2.22e-16
+## Fertlty     0.00160594 0.00041309  3.8876 0.0001012
+## lag.Fertlty 0.00130908 0.00086432  1.5146 0.1298793
+## 
+## Rho: 0.25703, LR test value: 14.374, p-value: 0.00014983
+## Asymptotic standard error: 0.073457
+##     z-value: 3.499, p-value: 0.00046705
+## Wald statistic: 12.243, p-value: 0.00046705
+## 
+## Log likelihood: -602.0817 for mixed model
+## ML residual variance (sigma squared): 1.0714, (sigma: 1.0351)
+## Number of observations: 413 
+## Number of parameters estimated: 5 
+## AIC: 1214.2, (AIC for lm: 1226.5)
+## LM test for residual autocorrelation
+## test value: 0.90817, p-value: 0.3406
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod.SDEM1 <-}\StringTok{ }\KeywordTok{errorsarlm}\NormalTok{(l_Deaths }\OperatorTok{~}\StringTok{ }\NormalTok{Fertlty, }\DataTypeTok{listw =}\NormalTok{ W1_list, }\DataTypeTok{data =}\NormalTok{ map, }\DataTypeTok{etype =} \StringTok{"emixed"}\NormalTok{, }\DataTypeTok{zero.policy =}\NormalTok{ T)}
+\KeywordTok{summary}\NormalTok{(mod.SDEM1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## errorsarlm(formula = l_Deaths ~ Fertlty, data = map, listw = W1_list, 
+##     etype = "emixed", zero.policy = T)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -4.50523 -0.30517  0.35846  0.65424  1.74940 
+## 
+## Type: error 
+## Regions with no neighbours included:
+##  279 
+## Coefficients: (asymptotic standard errors) 
+##               Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 4.13673983 0.22352805 18.5066 < 2.2e-16
+## Fertlty     0.00163560 0.00041534  3.9380 8.215e-05
+## lag.Fertlty 0.00197908 0.00089980  2.1995   0.02785
+## 
+## Lambda: 0.25987, LR test value: 13.205, p-value: 0.00027923
+## Asymptotic standard error: 0.077382
+##     z-value: 3.3583, p-value: 0.00078432
+## Wald statistic: 11.278, p-value: 0.00078432
+## 
+## Log likelihood: -602.6665 for error model
+## ML residual variance (sigma squared): 1.0742, (sigma: 1.0364)
+## Number of observations: 413 
+## Number of parameters estimated: 5 
+## AIC: 1215.3, (AIC for lm: 1226.5)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{save.image}\NormalTok{(}\DataTypeTok{file =} \StringTok{"data_kindergartens.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
