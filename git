@@ -1,0 +1,13 @@
+
+
+### GIT ###
+git add . # add all files to repo
+git commit -m "some message" # commit these files with the message
+git push # push these changes to github repo
+git checkout -b draft # create new branch with the name "draft"
+git branch # check what branch you currently are
+git push --set-upstream origin draft 
+# being in master it merges branch with master
+git merge draft
+
+
