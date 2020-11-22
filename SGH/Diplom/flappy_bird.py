@@ -29,12 +29,7 @@ class Env:
     # init does some necessary things under the hood
     self.env.init()
     self.env.getGameState = self.game.getGameState  # maybe not necessary
-
-    # by convention we want to use (0,1)
-    # but the game uses (None, 119)
-    # action takes a value of 119 to push the bird upwards
-    # 119 is ASCII number for w which is used in games for upward/forward movement.
-    self.action_map = self.env.getActionSet()  # [None, 119]
+    self.action_map = self.env.getActionSet()
 
   # function which takes an action
   def step(self, action):
@@ -111,8 +106,7 @@ class ANN:
     # first make it (N, D) to fit ML conventions
     X = np.atleast_2d(x)
     P = self.forward(X)
-    p = P[0]  # the first row
-    # return np.random.choice(len(p), p=p)
+    p = P[0]
     return np.argmax(p)
 
   def get_params(self):
