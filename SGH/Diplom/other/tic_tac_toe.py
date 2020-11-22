@@ -10,11 +10,11 @@ LENGTH = 3
 
 class Agent:
   def __init__(self, eps=0.1, alpha=0.5):
-    self.eps = eps # probability of choosing random action instead of greedy
-    self.alpha = alpha # learning rate
+    self.eps = eps  # probability of choosing random action instead of greedy
+    self.alpha = alpha  # learning rate
     self.verbose = False
     self.state_history = []
-  
+
   def setV(self, V):
     self.V = V
 
@@ -48,17 +48,17 @@ class Agent:
       # choose the best action based on current values of states
       # loop through all possible moves, get their values
       # keep track of the best value
-      pos2value = {} # for debugging
+      pos2value = {}  # for debugging
       next_move = None
       best_value = -1
       for i in range(LENGTH):
         for j in range(LENGTH):
           if env.is_empty(i, j):
             # what is the state if we made this move?
-            env.board[i,j] = self.sym
+            env.board[i, j] = self.sym
             state = env.get_state()
-            env.board[i,j] = 0 # don't forget to change it back!
-            pos2value[(i,j)] = self.V[state]
+            env.board[i, j] = 0  # don't forget to change it back!
+            pos2value[(i, j)] = self.V[state]
             if self.V[state] > best_value:
               best_value = self.V[state]
               best_state = state
@@ -72,12 +72,12 @@ class Agent:
           for j in range(LENGTH):
             if env.is_empty(i, j):
               # print the value
-              print(" %.2f|" % pos2value[(i,j)], end="")
+              print(" %.2f|" % pos2value[(i, j)], end="")
             else:
               print("  ", end="")
-              if env.board[i,j] == env.x:
+              if env.board[i, j] == env.x:
                 print("x  |", end="")
-              elif env.board[i,j] == env.o:
+              elif env.board[i, j] == env.o:
                 print("o  |", end="")
               else:
                 print("   |", end="")
@@ -104,7 +104,7 @@ class Agent:
     reward = env.reward(self.sym)
     target = reward
     for prev in reversed(self.state_history):
-      value = self.V[prev] + self.alpha*(target - self.V[prev])
+      value = self.V[prev] + self.alpha * (target - self.V[prev])
       self.V[prev] = value
       target = value
     self.reset_history()
@@ -115,14 +115,14 @@ class Agent:
 class Environment:
   def __init__(self):
     self.board = np.zeros((LENGTH, LENGTH))
-    self.x = -1 # represents an x on the board, player 1
-    self.o = 1 # represents an o on the board, player 2
+    self.x = -1  # represents an x on the board, player 1
+    self.o = 1  # represents an o on the board, player 2
     self.winner = None
     self.ended = False
-    self.num_states = 3**(LENGTH*LENGTH)
+    self.num_states = 3**(LENGTH * LENGTH)
 
   def is_empty(self, i, j):
-    return self.board[i,j] == 0
+    return self.board[i, j] == 0
 
   def reward(self, sym):
     # no reward until game is over
@@ -143,11 +143,11 @@ class Environment:
     h = 0
     for i in range(LENGTH):
       for j in range(LENGTH):
-        if self.board[i,j] == 0:
+        if self.board[i, j] == 0:
           v = 0
-        elif self.board[i,j] == self.x:
+        elif self.board[i, j] == self.x:
           v = 1
-        elif self.board[i,j] == self.o:
+        elif self.board[i, j] == self.o:
           v = 2
         h += (3**k) * v
         k += 1
@@ -159,11 +159,11 @@ class Environment:
     # also sets 'winner' instance variable and 'ended' instance variable
     if not force_recalculate and self.ended:
       return self.ended
-    
+
     # check rows
     for i in range(LENGTH):
       for player in (self.x, self.o):
-        if self.board[i].sum() == player*LENGTH:
+        if self.board[i].sum() == player * LENGTH:
           self.winner = player
           self.ended = True
           return True
@@ -171,7 +171,7 @@ class Environment:
     # check columns
     for j in range(LENGTH):
       for player in (self.x, self.o):
-        if self.board[:,j].sum() == player*LENGTH:
+        if self.board[:, j].sum() == player * LENGTH:
           self.winner = player
           self.ended = True
           return True
@@ -179,12 +179,12 @@ class Environment:
     # check diagonals
     for player in (self.x, self.o):
       # top-left -> bottom-right diagonal
-      if self.board.trace() == player*LENGTH:
+      if self.board.trace() == player * LENGTH:
         self.winner = player
         self.ended = True
         return True
       # top-right -> bottom-left diagonal
-      if np.fliplr(self.board).trace() == player*LENGTH:
+      if np.fliplr(self.board).trace() == player * LENGTH:
         self.winner = player
         self.ended = True
         return True
@@ -216,15 +216,14 @@ class Environment:
       print("-------------")
       for j in range(LENGTH):
         print("  ", end="")
-        if self.board[i,j] == self.x:
+        if self.board[i, j] == self.x:
           print("x ", end="")
-        elif self.board[i,j] == self.o:
+        elif self.board[i, j] == self.o:
           print("o ", end="")
         else:
           print("  ", end="")
       print("")
     print("-------------")
-
 
 
 class Human:
@@ -242,7 +241,7 @@ class Human:
       i = int(i)
       j = int(j)
       if env.is_empty(i, j):
-        env.board[i,j] = self.sym
+        env.board[i, j] = self.sym
         break
 
   def update(self, env):
@@ -261,7 +260,7 @@ def get_state_hash_and_winner(env, i=0, j=0):
   results = []
 
   for v in (0, env.x, env.o):
-    env.board[i,j] = v # if empty board it should already be 0
+    env.board[i, j] = v  # if empty board it should already be 0
     if j == 2:
       # j goes back to 0, increase i, unless i = 2, then we are done
       if i == 2:
@@ -394,7 +393,6 @@ if __name__ == '__main__':
   env = Environment()
   state_winner_triples = get_state_hash_and_winner(env)
 
-
   Vx = initialV_x(env, state_winner_triples)
   p1.setV(Vx)
   Vo = initialV_o(env, state_winner_triples)
@@ -404,7 +402,7 @@ if __name__ == '__main__':
   p1.set_symbol(env.x)
   p2.set_symbol(env.o)
 
-  T = 10000
+  T = 5000
   for t in range(T):
     if t % 200 == 0:
       print(t)
@@ -423,4 +421,3 @@ if __name__ == '__main__':
     answer = input("Play again? [Y/n]: ")
     if answer and answer.lower()[0] == 'n':
       break
-
