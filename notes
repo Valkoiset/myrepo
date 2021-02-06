@@ -1,0 +1,14 @@
+# ------ virtual environment ------
+
+# install virtual environment
+pip install virtualenv
+
+# create a virtual environment
+virtualenv path/your env
+
+# activate your virtual environment
+source yourenv/bin/activate
+
+# deactivate your virtual environment
+deactivate
+
